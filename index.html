@@ -195,150 +195,134 @@
     .lp-base { height:22px; background:linear-gradient(to bottom,#222,#181818); border-radius:0 0 14px 14px; border:1px solid rgba(255,255,255,0.04); border-top:none; position:relative; }
     .lp-base::after { content:''; position:absolute; bottom:5px; left:50%; transform:translateX(-50%); width:90px; height:8px; background:rgba(0,0,0,0.4); border-radius:6px; }
 
-    /* ── APP UI ── */
-    #appUI {
-      width:100%; height:100%; position:relative;
-      font-family:var(--fb); overflow:hidden;
-    }
-    .a-screen {
+    /* ── DEMO APP (clean rebuild) ── */
+    #appUI { width:100%; height:100%; position:relative; font-family:var(--fb); overflow:hidden; }
+
+    .app-scr {
       position:absolute; inset:0; display:flex; flex-direction:column;
-      transition:opacity 0.4s, transform 0.4s;
+      transition:opacity 0.4s ease;
     }
-    .a-screen.hidden { opacity:0; pointer-events:none; transform:scale(0.98); }
+    .app-scr.app-hidden { opacity:0; pointer-events:none; }
 
-    /* Pre-session - same beige ground as First Idea */
-    .ps-inner { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; background:#e8dcc8; }
-    .ps-lbl { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-bottom:0.8rem; }
-    .ps-btn {
-      padding:0.55rem 1.6rem; border-radius:14px; background:#1a1a1a; color:#fff; font-family:var(--fb); font-size:0.8rem; font-weight:700;
-      cursor:pointer; border:2.5px solid #1a1a1a; transition:transform .2s, background .2s;
-      box-shadow: 2px 3px 0 rgba(0,0,0,0.25);
-    }
-    .ps-btn:hover { background:#333; transform:scale(1.05); }
-    .ps-config { display:none; width:100%; max-width:260px; flex-direction:column; gap:0.8rem; }
-    .ps-config.show { display:flex; }
-    .ps-toggle { position:absolute; opacity:0; pointer-events:none; }
-    .ps-toggle:checked ~ .ps-btn-start { display:none !important; }
-    .ps-toggle:checked ~ .ps-config { display:flex !important; }
-    #beginToggle { position:absolute; opacity:0; pointer-events:none; }
-    #beginToggle:checked ~ #scPreSession { opacity:0 !important; pointer-events:none !important; }
-    #beginToggle:checked ~ #scFocus { opacity:1 !important; pointer-events:auto !important; }
-    .ps-row { display:flex; flex-direction:column; gap:0.3rem; }
-    .ps-opt-lbl { font-size:0.58rem; letter-spacing:0.15em; text-transform:uppercase; color:#666; }
-    .ps-options { display:flex; flex-wrap:wrap; gap:0.25rem; }
-    .ps-options label { display:inline-flex; cursor:pointer; margin:0; }
-    .ps-opt-input { position:absolute; opacity:0; width:0; height:0; }
-    .ps-opt { padding:0.35rem 0.6rem; border-radius:8px; border:1px solid #aaa; background:rgba(255,255,255,0.5); font-family:var(--fb); font-size:0.64rem; cursor:pointer; transition:all .15s; display:inline-block; }
-    .ps-opt:hover, .ps-opt-input:checked + .ps-opt { background:#1a1a1a; color:#e4dcd0; border-color:#1a1a1a; }
-    .ps-begin { margin-top:0.5rem; }
-
-    /* Topbar - hand-drawn style (gear + profile icons) */
-    .a-bar {
+    .app-icons {
       position:absolute; top:0; left:0; right:0; z-index:10;
-      display:flex; justify-content:space-between; padding:10px 14px;
-    }
-    .a-icon {
-      width:28px; height:28px; border-radius:50%;
-      border:2.5px solid #1a1a1a;
-      display:flex; align-items:center; justify-content:center;
-      color:#1a1a1a; font-size:0.85rem;
-      background:#fff; cursor:pointer;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-    }
-
-    /* Sky - First Idea gradient (blue→purple→red) + grain texture */
-    .a-sky {
-      flex:0 0 45%; position:relative; overflow:hidden;
-      background: url('assets/backgrounds/default_bg.png') center/cover no-repeat;
-    }
-
-    /* Road - thick horizon line (First Idea: car drives toward finish) */
-    .road {
-      position:absolute; bottom:0; left:0; right:0; height:5px;
-      background:#1a1a1a; border-radius:0;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.3);
-    }
-
-    /* Car - simple white outline sedan (First Idea sticker style), sits ON the road */
-    .a-car {
-      position:absolute; bottom:0; transform:translateY(-5px); z-index:5;
-      transition:left 1.5s cubic-bezier(0.25,0.46,0.45,0.94);
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
-    }
-    .a-car svg { display:block; }
-
-    /* Checkpoints */
-    .chk { position:absolute; bottom:0; }
-
-    /* Tab warning banner */
-    .tab-warn {
-      position:absolute; top:0; left:0; right:0; z-index:20;
-      padding:8px 14px;
-      background:rgba(255,255,255,0.18); backdrop-filter:blur(10px);
-      display:flex; align-items:center; justify-content:space-between; gap:0.5rem;
-      border-bottom:1px solid rgba(255,255,255,0.22);
-      font-size:0.72rem; color:#fff;
-      transform:translateY(-100%); transition:transform 0.38s ease;
+      display:flex; justify-content:space-between; padding:8px 12px;
       pointer-events:none;
     }
-    .tab-warn.show { transform:translateY(0); pointer-events:auto; }
-    .tab-dismiss {
-      background:rgba(255,255,255,0.22); border:none; border-radius:100px;
-      color:#fff; font-family:var(--fb); font-size:0.68rem; font-weight:500;
-      padding:3px 12px; cursor:pointer; white-space:nowrap;
-      transition:background .2s;
-    }
-    .tab-dismiss:hover { background:rgba(255,255,255,0.35); }
+    .app-icons img { width:100px; height:100px; object-fit:contain; pointer-events:auto; }
 
-    /* App bottom - light beige ground (First Idea) */
-    .a-bot {
-      flex:1; background:#e8dcc8;
+    .app-sky {
+      flex:0 0 55%; position:relative;
+      overflow:visible; z-index:2;
+      background-size:cover; background-position:center top; background-repeat:no-repeat;
+    }
+    .bg-sunrise { background-image:url('assets/backgrounds/sunrise_bg.png'); }
+    .bg-sunset  { background-image:url('assets/backgrounds/sunset_bg.png'); }
+    .bg-day     { background-image:url('assets/backgrounds/daytime_bg.png'); }
+
+    .sky-text {
+      position:absolute; top:35%; left:50%;
+      transform:translate(-50%,-50%);
+      z-index:3; pointer-events:none;
+      height:22%; width:auto;
+    }
+
+    .app-car {
+      position:absolute; bottom:0; z-index:6; pointer-events:none;
+      transform:translateX(-50%);
+    }
+    .app-car img { height:200px; width:auto; display:block; transform:translateY(20%); }
+
+    .app-flag { position:absolute; bottom:0; z-index:4; pointer-events:none; }
+    .app-flag img { height:220px; width:auto; display:block; transform:translateY(5%); }
+
+    @keyframes flagSweep {
+      0%    { left:105%; }
+      2.7%  { left:-15%; }
+      2.8%  { left:105%; }
+      100%  { left:105%; }
+    }
+    .app-flag-moving {
+      animation:flagSweep 300s linear infinite;
+    }
+
+    .app-ground {
+      flex:1; position:relative; z-index:1;
+      background:#e8dcc8;
       display:flex; flex-direction:column;
       align-items:center; justify-content:center;
-      padding:0.7rem 1.5rem 1rem; gap:0.4rem; position:relative;
-      border-top: 4px solid #1a1a1a;
+      padding:0.5rem 1rem; gap:0.3rem;
+      overflow-y:auto;
     }
 
-    /* Focus content - sticker/doodle aesthetic */
-    .f-slbl { font-size:0.55rem; letter-spacing:0.28em; text-transform:uppercase; color:#888; font-weight:700; }
-    .f-tmr {
-      font-family:var(--fd); font-size:clamp(1.8rem,5vw,3.4rem);
-      font-weight:900; letter-spacing:0.08em; color:#1a1a1a; line-height:1; cursor:default;
-      text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 0 0 3px rgba(0,0,0,0.2);
-    }
-    .ci-row { display:flex; align-items:center; gap:0.5rem; font-size:0.62rem; color:#777; }
-    .ci-bar { width:70px; height:4px; background:rgba(0,0,0,0.12); border-radius:100px; overflow:hidden; border:1px solid rgba(0,0,0,0.15); }
-    .ci-fill { height:100%; width:0%; background:var(--blue); border-radius:100px; transition:width 1s linear; }
-    .f-quote { font-family:var(--fhand); font-size:0.95rem; font-weight:600; color:#333; text-align:center; max-width:260px; }
-    .f-btns { display:flex; gap:0.32rem; flex-wrap:wrap; justify-content:center; margin-top:0.15rem; }
+    .app-big-btn { background:none; border:none; padding:0; cursor:pointer; display:block; transition:transform .15s ease; }
+    .app-big-btn img { height:85px; width:auto; display:block; }
+    .app-big-btn:hover { transform:scale(1.05); }
+    .app-big-btn:active { transform:scale(0.97); }
 
-    /* Buttons - sticker style (thick outline, peel effect) */
-    .ab {
-      padding:0.45rem 0.95rem; border-radius:12px; font-family:var(--fb);
-      font-size:0.68rem; font-weight:600; cursor:pointer;
-      border:2.5px solid #1a1a1a;
-      box-shadow: 1px 2px 0 rgba(0,0,0,0.2);
-      transition:background .15s, color .15s, transform .15s, opacity .15s, box-shadow .15s;
+    .app-quiz { display:none; width:100%; max-width:380px; flex-direction:column; gap:0.6rem; align-items:center; text-align:center; }
+    .app-quiz.show { display:flex; }
+    .quiz-row { display:none; flex-direction:column; gap:0.3rem; align-items:center; width:100%; }
+    .quiz-row.active { display:flex; }
+    .quiz-lbl { font-size:0.88rem; letter-spacing:0.12em; text-transform:uppercase; color:#555; font-weight:700; }
+    .quiz-opts { display:flex; flex-wrap:nowrap; gap:0.4rem; justify-content:center; }
+    .quiz-opts label { display:inline-flex; cursor:pointer; margin:0; }
+    .quiz-opts input[type="radio"] { position:absolute; opacity:0; width:0; height:0; }
+    .quiz-chip {
+      padding:0.5rem 0.95rem; border-radius:10px; border:1.5px solid #aaa;
+      background:rgba(255,255,255,0.5); font-family:var(--fb); font-size:0.92rem;
+      cursor:pointer; transition:all .15s; display:inline-block; white-space:nowrap;
     }
-    .ab:hover:not(:disabled) { transform:scale(1.03); box-shadow: 2px 3px 0 rgba(0,0,0,0.25); }
-    .ab.pri { background:#1a1a1a; color:#fff; }
-    .ab.pri:hover { background:#333; }
-    .ab.gh  { background:#fff; color:#1a1a1a; }
-    .ab.gh:hover  { background:#f5f0e8; }
-    .ab.ghr { background:#fff; color:var(--red); border-color:var(--red); }
-    .ab.ghr:hover { background:rgba(207,64,56,0.08); }
-    .ab:disabled { opacity:0.3; cursor:not-allowed; transform:none !important; }
+    .quiz-chip:hover,
+    .quiz-opts input:checked + .quiz-chip { background:#1a1a1a; color:#e4dcd0; border-color:#1a1a1a; }
+    .quiz-begin { display:none; }
+    .quiz-begin.active { display:block; }
 
-    /* Break content - sticker style */
-    .b-lbl { font-size:0.55rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--purple); font-weight:700; }
-    .b-tmr {
-      font-family:var(--fd); font-size:clamp(1.5rem,4vw,2.8rem); font-weight:900; letter-spacing:0.08em; color:#1a1a1a; line-height:1;
-      text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+    .focus-lbl { font-size:0.48rem; letter-spacing:0.28em; text-transform:uppercase; color:#888; font-weight:700; }
+    .focus-timer {
+      font-family:var(--fd); font-size:clamp(2.2rem,6vw,3.8rem);
+      font-weight:900; letter-spacing:0.08em; color:#1a1a1a; line-height:1;
     }
-    .b-bar { width:100px; height:4px; background:rgba(0,0,0,0.12); border-radius:100px; overflow:hidden; border:1px solid rgba(0,0,0,0.15); }
-    .b-fill { height:100%; width:100%; background:linear-gradient(to right,var(--purple),var(--blue)); border-radius:100px; transition:width 1s linear; }
-    .b-quote { font-family:var(--fhand); font-size:0.95rem; font-weight:600; color:#333; text-align:center; max-width:260px; }
-    .b-btns { display:flex; gap:0.32rem; flex-wrap:wrap; justify-content:center; }
+    .focus-quote { font-family:var(--fhand); font-size:1.1rem; font-weight:600; color:#333; text-align:center; max-width:320px; }
+
+    .app-btns { display:flex; gap:0.2rem; flex-wrap:wrap; justify-content:center; margin-top:0.1rem; }
+    .app-btn {
+      padding:0.3rem 0.7rem; border-radius:10px; font-family:var(--fb);
+      font-size:0.58rem; font-weight:600; cursor:pointer;
+      border:2px solid #1a1a1a; background:#fff; color:#1a1a1a;
+      box-shadow:1px 1px 0 rgba(0,0,0,0.15); transition:all .15s;
+    }
+    .app-btn:hover:not(:disabled) { transform:scale(1.03); }
+    .app-btn:disabled { opacity:0.3; cursor:not-allowed; }
+    .app-img-btn { background:none; border:none; padding:0; cursor:pointer; display:inline-block; transition:transform .15s ease; }
+    .app-img-btn img { height:36px; width:auto; display:block; }
+    .app-img-btn:hover { transform:scale(1.05); }
+
+    .break-lbl { font-size:0.48rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--purple); font-weight:700; }
+    .break-timer {
+      font-family:var(--fd); font-size:clamp(1.2rem,3.5vw,2.2rem);
+      font-weight:900; letter-spacing:0.08em; color:#1a1a1a; line-height:1;
+    }
+    .break-bar-track { width:70px; height:3px; background:rgba(0,0,0,0.12); border-radius:100px; overflow:hidden; }
+    .break-bar {
+      height:100%; width:100%;
+      background:linear-gradient(to right,var(--purple),var(--blue));
+      border-radius:100px; transition:width 1s linear;
+    }
+
+    .app-tab-warn {
+      position:absolute; top:0; left:0; right:0; z-index:20;
+      padding:5px 10px; background:rgba(255,255,255,0.18); backdrop-filter:blur(10px);
+      display:flex; align-items:center; justify-content:space-between; gap:0.3rem;
+      font-size:0.6rem; color:#fff;
+      transform:translateY(-100%); transition:transform 0.38s ease; pointer-events:none;
+    }
+    .app-tab-warn.show { transform:translateY(0); pointer-events:auto; }
+    .app-tab-dismiss {
+      background:rgba(255,255,255,0.22); border:none; border-radius:100px;
+      color:#fff; font-family:var(--fb); font-size:0.55rem; font-weight:500;
+      padding:2px 8px; cursor:pointer;
+    }
 
     /* ── TEAM ── */
     #team { padding:10rem 3rem 9rem; color:#fff; }
@@ -485,6 +469,7 @@
       z-index: 2;
       pointer-events: none;
     }
+    /* (old .ab-img and .ps-config rules removed in rebuild) */
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -566,124 +551,128 @@
     <div class="lp-lid">
       <div class="lp-screen">
         <div id="appUI">
-          <input type="checkbox" id="beginToggle" aria-hidden="true">
-
-          <!-- TAB WARNING -->
-          <div class="tab-warn" id="tabWarn">
-            <span>Looks like you're watching the clock. Ready to refocus?</span>
-            <button type="button" class="tab-dismiss" onclick="dismissWarn()">Let's go &#8599;</button>
+          <div class="app-tab-warn" id="tabWarn">
+            <span>Looks like you're watching the clock.</span>
+            <button type="button" class="app-tab-dismiss" id="btnDismissWarn">Refocus &#8599;</button>
           </div>
 
-          <!-- PRE-SESSION SCREEN -->
-          <div class="a-screen" id="scPreSession">
-            <div class="ps-inner">
-              <p class="ps-lbl">Start your session</p>
-              <input type="checkbox" id="psToggle" class="ps-toggle" aria-hidden="true">
-              <label for="psToggle" class="ps-btn ps-btn-start" id="btnStartSession">Start session</label>
-              <div class="ps-config" id="psConfig">
-                <div class="ps-row">
-                  <span class="ps-opt-lbl">Length</span>
-                  <div class="ps-options">
-                    <label><input type="radio" name="ps-len" class="ps-opt-input" value="short" checked><span class="ps-opt">Short</span></label>
-                    <label><input type="radio" name="ps-len" class="ps-opt-input" value="medium"><span class="ps-opt">Medium</span></label>
-                    <label><input type="radio" name="ps-len" class="ps-opt-input" value="extended"><span class="ps-opt">Extended</span></label>
+          <!-- START SCREEN -->
+          <div class="app-scr" id="scrStart">
+            <div class="app-icons">
+              <img src="assets/icons/Big settings icon .png" alt="Settings">
+              <img src="assets/icons/big profile icon .png" alt="Profile">
+            </div>
+            <div class="app-sky bg-sunrise">
+              <div class="app-flag" style="left:62%">
+                <img src="assets/elements/static flag.png" alt="Checkpoint">
+              </div>
+              <div class="app-car" style="left:50%">
+                <img src="assets/animations/Big car.png" alt="Car">
+              </div>
+            </div>
+            <div class="app-ground" id="startGround">
+              <button class="app-big-btn" id="btnStart" type="button">
+                <img src="assets/buttons/start button.png" alt="Start">
+              </button>
+              <div class="app-quiz" id="quiz">
+                <div class="quiz-row active" data-step="0">
+                  <span class="quiz-lbl">Length</span>
+                  <div class="quiz-opts">
+                    <label><input type="radio" name="q-len" value="short" checked><span class="quiz-chip">Short</span></label>
+                    <label><input type="radio" name="q-len" value="medium"><span class="quiz-chip">Medium</span></label>
+                    <label><input type="radio" name="q-len" value="extended"><span class="quiz-chip">Extended</span></label>
                   </div>
                 </div>
-                <div class="ps-row">
-                  <span class="ps-opt-lbl">Type</span>
-                  <div class="ps-options">
-                    <label><input type="radio" name="ps-type" class="ps-opt-input" value="easy" checked><span class="ps-opt">Easy</span></label>
-                    <label><input type="radio" name="ps-type" class="ps-opt-input" value="flashcards"><span class="ps-opt">Flashcards</span></label>
-                    <label><input type="radio" name="ps-type" class="ps-opt-input" value="deep"><span class="ps-opt">Deep</span></label>
-                    <label><input type="radio" name="ps-type" class="ps-opt-input" value="adaptive"><span class="ps-opt">Adaptive</span></label>
+                <div class="quiz-row" data-step="1">
+                  <span class="quiz-lbl">Type</span>
+                  <div class="quiz-opts">
+                    <label><input type="radio" name="q-type" value="easy" checked><span class="quiz-chip">Easy</span></label>
+                    <label><input type="radio" name="q-type" value="flashcards"><span class="quiz-chip">Flashcards</span></label>
+                    <label><input type="radio" name="q-type" value="deep"><span class="quiz-chip">Deep</span></label>
+                    <label><input type="radio" name="q-type" value="adaptive"><span class="quiz-chip">Adaptive</span></label>
                   </div>
                 </div>
-                <div class="ps-row">
-                  <span class="ps-opt-lbl">Goal</span>
-                  <div class="ps-options">
-                    <label><input type="radio" name="ps-goal" class="ps-opt-input" value="output" checked><span class="ps-opt">Output</span></label>
-                    <label><input type="radio" name="ps-goal" class="ps-opt-input" value="burnout"><span class="ps-opt">Less burnout</span></label>
-                    <label><input type="radio" name="ps-goal" class="ps-opt-input" value="balance"><span class="ps-opt">Balance</span></label>
+                <div class="quiz-row" data-step="2">
+                  <span class="quiz-lbl">Goal</span>
+                  <div class="quiz-opts">
+                    <label><input type="radio" name="q-goal" value="output" checked><span class="quiz-chip">Output</span></label>
+                    <label><input type="radio" name="q-goal" value="burnout"><span class="quiz-chip">Less burnout</span></label>
+                    <label><input type="radio" name="q-goal" value="balance"><span class="quiz-chip">Balance</span></label>
                   </div>
                 </div>
-                <div class="ps-row">
-                  <span class="ps-opt-lbl">What are you doing?</span>
-                  <div class="ps-options">
-                    <label><input type="radio" name="ps-task" class="ps-opt-input" value="reading" checked><span class="ps-opt">Reading</span></label>
-                    <label><input type="radio" name="ps-task" class="ps-opt-input" value="writing"><span class="ps-opt">Writing</span></label>
-                    <label><input type="radio" name="ps-task" class="ps-opt-input" value="coding"><span class="ps-opt">Coding</span></label>
-                    <label><input type="radio" name="ps-task" class="ps-opt-input" value="studying"><span class="ps-opt">Studying</span></label>
-                    <label><input type="radio" name="ps-task" class="ps-opt-input" value="hobby"><span class="ps-opt">Hobby</span></label>
+                <div class="quiz-row" data-step="3">
+                  <span class="quiz-lbl">What are you doing?</span>
+                  <div class="quiz-opts">
+                    <label><input type="radio" name="q-task" value="reading" checked><span class="quiz-chip">Reading</span></label>
+                    <label><input type="radio" name="q-task" value="writing"><span class="quiz-chip">Writing</span></label>
+                    <label><input type="radio" name="q-task" value="coding"><span class="quiz-chip">Coding</span></label>
+                    <label><input type="radio" name="q-task" value="studying"><span class="quiz-chip">Studying</span></label>
+                    <label><input type="radio" name="q-task" value="hobby"><span class="quiz-chip">Hobby</span></label>
                   </div>
                 </div>
-                <label for="beginToggle" class="ps-btn ps-begin">Begin</label>
+                <button class="app-big-btn quiz-begin active" id="btnBegin" type="button">
+                  <img src="assets/buttons/begin button.png" alt="Begin">
+                </button>
               </div>
             </div>
           </div>
 
           <!-- FOCUS SCREEN -->
-          <div class="a-screen hidden" id="scFocus">
-            <div class="a-bar">
-              <div class="a-icon">&#9881;</div>
-              <div class="a-icon">&#128100;</div>
+          <div class="app-scr app-hidden" id="scrFocus">
+            <div class="app-icons">
+              <img src="assets/icons/Big settings icon .png" alt="Settings">
+              <img src="assets/icons/big profile icon .png" alt="Profile">
             </div>
-            <div class="a-sky" id="skFocus">
-              <div class="road"></div>
-              <!-- Checkpoints -->
-              <div class="chk" style="left:28%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
-              <div class="chk" style="left:57%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
-              <div class="chk chk-flag" style="left:86%"><svg width="24" height="36" viewBox="0 0 24 36"><rect x="10" y="0" width="2" height="34" fill="#1a1a1a"/><rect x="12" y="2" width="4" height="4" fill="#fff"/><rect x="16" y="2" width="4" height="4" fill="#1a1a1a"/><rect x="12" y="6" width="4" height="4" fill="#1a1a1a"/><rect x="16" y="6" width="4" height="4" fill="#fff"/><rect x="12" y="10" width="4" height="4" fill="#fff"/><rect x="16" y="10" width="4" height="4" fill="#1a1a1a"/></svg></div>
-              <!-- Car -->
-              <div class="a-car" id="car" style="left:6%">
-                <img src="assets/animations/In place loop gif.gif" alt="" style="height:36px;width:auto;display:block;">
+            <div class="app-sky bg-sunset">
+              <img class="sky-text" src="assets/text/LOCKED IN.png" alt="Locked In">
+              <div class="app-flag app-flag-moving">
+                <img src="assets/elements/static flag.png" alt="Checkpoint">
+              </div>
+              <div class="app-car" id="focusCar" style="left:50%">
+                <img src="assets/animations/Big car.png" alt="Car">
               </div>
             </div>
-            <div class="a-bot">
-              <p class="f-slbl">FOCUS SESSION</p>
-              <div class="f-tmr" id="fTmr">00:00:00</div>
-              <div class="ci-row">
-                <span>Next check-in: <strong id="ciTxt">10:00</strong></span>
-                <div class="ci-bar"><div class="ci-fill" id="ciFill"></div></div>
-              </div>
-              <p class="f-quote" id="fQ">&ldquo;Start strong. Every second counts.&rdquo;</p>
-              <div class="f-btns">
-                <button type="button" class="ab gh" onclick="doSnooze()">Snooze</button>
-                <button type="button" class="ab ghr" onclick="doEnd()">End Session</button>
-                <button type="button" class="ab gh" onclick="doBreak()">Start Break</button>
-                <button type="button" class="ab gh" id="btnPause" onclick="togglePause()">Pause</button>
-                <button type="button" class="ab pri" onclick="doKeep()">Keep Going &#8599;</button>
+            <div class="app-ground">
+              <p class="focus-lbl">FOCUS SESSION</p>
+              <div class="focus-timer" id="focusTimer">00:00:00</div>
+              <p class="focus-quote" id="focusQuote">&ldquo;Start strong. Every second counts.&rdquo;</p>
+              <div class="app-btns">
+                <button type="button" class="app-img-btn" id="btnSnooze"><img src="assets/buttons/Snooze button.png" alt="Snooze"></button>
+                <button type="button" class="app-img-btn" id="btnEnd"><img src="assets/buttons/End button.png" alt="End"></button>
+                <button type="button" class="app-img-btn" id="btnBreak"><img src="assets/buttons/Break button.png" alt="Break"></button>
+                <button type="button" class="app-img-btn" id="btnPause"><img src="assets/buttons/Pause button.png" alt="Pause"></button>
+                <button type="button" class="app-img-btn" id="btnQuote"><img src="assets/buttons/quote button.png" alt="Quote"></button>
               </div>
             </div>
-          </div><!-- /scFocus -->
+          </div>
 
           <!-- BREAK SCREEN -->
-          <div class="a-screen hidden" id="scBreak">
-            <div class="a-bar">
-              <div class="a-icon">&#9881;</div>
-              <div class="a-icon">&#128100;</div>
+          <div class="app-scr app-hidden" id="scrBreak">
+            <div class="app-icons">
+              <img src="assets/icons/Big settings icon .png" alt="Settings">
+              <img src="assets/icons/big profile icon .png" alt="Profile">
             </div>
-            <div class="a-sky break-mode" id="skBreak">
-              <div class="road"></div>
-              <div class="chk" style="left:28%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
-              <div class="chk" style="left:57%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
-              <div class="chk chk-flag" style="left:86%"><svg width="24" height="36" viewBox="0 0 24 36"><rect x="10" y="0" width="2" height="34" fill="#1a1a1a"/><rect x="12" y="2" width="4" height="4" fill="#fff"/><rect x="16" y="2" width="4" height="4" fill="#1a1a1a"/><rect x="12" y="6" width="4" height="4" fill="#1a1a1a"/><rect x="16" y="6" width="4" height="4" fill="#fff"/><rect x="12" y="10" width="4" height="4" fill="#fff"/><rect x="16" y="10" width="4" height="4" fill="#1a1a1a"/></svg></div>
-              <div class="a-car" id="carB" style="left:6%">
-                <img src="assets/animations/In place loop gif.gif" alt="" style="height:36px;width:auto;display:block;">
+            <div class="app-sky bg-day">
+              <div class="app-flag app-flag-moving">
+                <img src="assets/elements/static flag.png" alt="Checkpoint">
+              </div>
+              <div class="app-car" id="breakCar" style="left:50%">
+                <img src="assets/animations/Big car.png" alt="Car">
               </div>
             </div>
-            <div class="a-bot">
-              <p class="b-lbl">— BREAK —</p>
-              <div class="b-tmr" id="bTmr">05:00</div>
-              <div class="b-bar"><div class="b-fill" id="bFill"></div></div>
-              <p class="b-quote" id="bQ">&ldquo;Rest is part of the work. You've earned this.&rdquo;</p>
-              <div class="b-btns">
-                <button type="button" class="ab pri" onclick="doBack()">Back to Work</button>
-                <button type="button" class="ab gh" id="e2" onclick="extB(2)">+2 min</button>
-                <button type="button" class="ab gh" id="e5" onclick="extB(5)">+5 min</button>
-                <button type="button" class="ab gh" id="e10" onclick="extB(10)">+10 min</button>
+            <div class="app-ground">
+              <p class="break-lbl">&mdash; BREAK &mdash;</p>
+              <div class="break-timer" id="breakTimer">05:00</div>
+              <div class="break-bar-track"><div class="break-bar" id="breakBar"></div></div>
+              <p class="focus-quote" id="breakQuote">&ldquo;Rest is part of the work. You've earned this.&rdquo;</p>
+              <div class="app-btns">
+                <button type="button" class="app-img-btn" id="btnBackToWork"><img src="assets/buttons/start button.png" alt="Back to Work"></button>
+                <button type="button" class="app-btn" id="btnExt2">+2 min</button>
+                <button type="button" class="app-btn" id="btnExt5">+5 min</button>
+                <button type="button" class="app-btn" id="btnExt10">+10 min</button>
               </div>
             </div>
-          </div><!-- /scBreak -->
+          </div>
 
         </div><!-- /appUI -->
       </div>
@@ -694,110 +683,153 @@
 </section>
 
 <script>
-/* DEMO - runs first, ES5 only, onclick-based (works when addEventListener blocked) */
+/* DEMO — clean rebuild, JS-driven screen transitions */
 (function(){
-  var fSecs=0,ciTotal=600,ciRem=600,bTotal=300,bRem=300,bExt=false,iv=null,carPct=6,paused=false,tabWarnShown=false,focusedOnce=false;
+  var fSecs=0,ciTotal=600,ciRem=600,bTotal=300,bRem=300;
+  var bExtended=false,iv=null,carPct=6,paused=false,tabWarnShown=false;
   var FQ=['"Start strong. Every second counts."','"You\'re building momentum. Keep going."','"In the zone. This is what focus feels like."','"Steady and strong. You\'ve got this."','"Every minute here is a minute that matters."'];
   var BQ=['"Rest is part of the work. You\'ve earned this."','"Recharge well. Your brain is integrating what you learned."','"Step away to come back stronger."'];
   var fqi=0,bqi=0;
-  function f2(n){return (n<10?'0':'')+n;}
-  function fmtF(s){return f2(Math.floor(s/3600))+':'+f2(Math.floor(s%3600/60))+':'+f2(s%60);}
-  function fmtM(s){return f2(Math.floor(s/60))+':'+f2(s%60);}
-  function syncCar(){var c=document.getElementById('car'),b=document.getElementById('carB');if(c)c.style.left=carPct+'%';if(b)b.style.left=carPct+'%';}
-  function nextFQ(){fqi=(fqi+1)%FQ.length;var e=document.getElementById('fQ');if(e)e.innerHTML=FQ[fqi];}
-  function nextBQ(){bqi=(bqi+1)%BQ.length;var e=document.getElementById('bQ');if(e)e.innerHTML=BQ[bqi];}
-  function runF(){
+
+  function pad(n){return (n<10?'0':'')+n;}
+  function fmtHMS(s){return pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60);}
+  function fmtMS(s){return pad(Math.floor(s/60))+':'+pad(s%60);}
+  function $(id){return document.getElementById(id);}
+
+  function showScreen(id){
+    var all=document.querySelectorAll('.app-scr');
+    for(var i=0;i<all.length;i++) all[i].classList.add('app-hidden');
+    var el=$(id); if(el) el.classList.remove('app-hidden');
+  }
+  function syncCar(){}
+  function nextFQ(){fqi=(fqi+1)%FQ.length;var e=$('focusQuote');if(e)e.textContent=FQ[fqi];}
+  function nextBQ(){bqi=(bqi+1)%BQ.length;var e=$('breakQuote');if(e)e.textContent=BQ[bqi];}
+
+  function runFocus(){
     if(iv)clearInterval(iv);
     iv=setInterval(function(){
       fSecs++;
-      var e=document.getElementById('fTmr');if(e)e.textContent=fmtF(fSecs);
+      var t=$('focusTimer');if(t)t.textContent=fmtHMS(fSecs);
       carPct=Math.min(6+(fSecs/3600)*80,84);syncCar();
-      ciRem--;var cf=document.getElementById('ciFill'),ct=document.getElementById('ciTxt');
-      if(cf)cf.style.width=((ciTotal-ciRem)/ciTotal*100)+'%';
-      if(ct)ct.textContent=fmtM(Math.max(ciRem,0));
+      ciRem--;
+      var bar=$('ciBar'),txt=$('ciCount');
+      if(bar)bar.style.width=((ciTotal-ciRem)/ciTotal*100)+'%';
+      if(txt)txt.textContent=fmtMS(Math.max(ciRem,0));
       if(ciRem<=0){ciRem=ciTotal;nextFQ();}
       if(fSecs%30===0)nextFQ();
-      if(fSecs>=15&&!tabWarnShown){var tw=document.getElementById('tabWarn');if(tw){tw.classList.add('show');tabWarnShown=true;}}
+      if(fSecs>=15&&!tabWarnShown){var tw=$('tabWarn');if(tw){tw.classList.add('show');tabWarnShown=true;}}
     },1000);
   }
-  function runB(){
+  function runBreak(){
     if(iv)clearInterval(iv);
     iv=setInterval(function(){
       bRem--;
-      var e=document.getElementById('bTmr');if(e)e.textContent=fmtM(Math.max(bRem,0));
-      var bf=document.getElementById('bFill');if(bf)bf.style.width=(bRem/bTotal*100)+'%';
-      if(bRem<=0){clearInterval(iv);iv=null;doBack();}
+      var t=$('breakTimer');if(t)t.textContent=fmtMS(Math.max(bRem,0));
+      var bar=$('breakBar');if(bar)bar.style.width=(bRem/bTotal*100)+'%';
+      if(bRem<=0){clearInterval(iv);iv=null;goBack();}
     },1000);
   }
+
+  var quizStep=0;
+  function startQuiz(){
+    var btn=$('btnStart'),quiz=$('quiz');
+    if(btn)btn.style.display='none';
+    if(quiz)quiz.classList.add('show');
+    quizStep=0;
+    showQuizStep(0);
+  }
+  function showQuizStep(step){
+    var rows=document.querySelectorAll('#quiz .quiz-row');
+    var beginBtn=document.querySelector('#quiz .quiz-begin');
+    for(var i=0;i<rows.length;i++) rows[i].classList.toggle('active',i===step);
+    if(beginBtn) beginBtn.classList.toggle('active',step>=rows.length);
+  }
+  function advanceQuiz(){
+    quizStep++;
+    var rows=document.querySelectorAll('#quiz .quiz-row');
+    showQuizStep(quizStep);
+  }
   function beginFocus(){
-    if(focusedOnce)return;
-    focusedOnce=true;
     paused=false;tabWarnShown=false;
-    var pre=document.getElementById('scPreSession'),foc=document.getElementById('scFocus');
-    var bp=document.getElementById('btnPause'),tw=document.getElementById('tabWarn');
-    if(pre)pre.classList.add('hidden');
-    if(foc)foc.classList.remove('hidden');
-    if(bp)bp.textContent='Pause';
-    if(tw)tw.classList.remove('show');
-    runF();
+    var tw=$('tabWarn');if(tw)tw.classList.remove('show');
+    var bp=$('btnPause');
+    if(bp){var pi=bp.querySelector('img');if(pi)pi.src='assets/buttons/Pause button.png';}
+    showScreen('scrFocus');
+    runFocus();
   }
   function togglePause(){
     paused=!paused;
-    var btn=document.getElementById('btnPause');
-    if(paused){clearInterval(iv);iv=null;if(btn)btn.textContent='Resume';}
-    else{if(btn)btn.textContent='Pause';runF();}
+    var btn=$('btnPause');
+    var img=btn?btn.querySelector('img'):null;
+    if(paused){clearInterval(iv);iv=null;}
+    else{runFocus();}
   }
-  function doSnooze(){ciTotal=Math.round(ciTotal*1.5);ciRem=ciTotal;var cf=document.getElementById('ciFill');if(cf)cf.style.width='0%';}
-  function doKeep(){ciRem=ciTotal;var cf=document.getElementById('ciFill');if(cf)cf.style.width='0%';nextFQ();}
+  function doSnooze(){ciTotal=Math.round(ciTotal*1.5);ciRem=ciTotal;var b=$('ciBar');if(b)b.style.width='0%';}
+  function doExtend(){ciRem=ciTotal;var b=$('ciBar');if(b)b.style.width='0%';nextFQ();}
   function doEnd(){
-    clearInterval(iv);iv=null;paused=false;focusedOnce=false;
+    clearInterval(iv);iv=null;paused=false;
     fSecs=0;ciRem=600;ciTotal=600;carPct=6;fqi=0;
-    var ft=document.getElementById('fTmr'),cf=document.getElementById('ciFill'),ct=document.getElementById('ciTxt'),fq=document.getElementById('fQ');
-    if(ft)ft.textContent='00:00:00';if(cf)cf.style.width='0%';if(ct)ct.textContent='10:00';if(fq)fq.innerHTML=FQ[0];
+    var t=$('focusTimer');if(t)t.textContent='00:00:00';
+    var b=$('ciBar');if(b)b.style.width='0%';
+    var c=$('ciCount');if(c)c.textContent='10:00';
+    var q=$('focusQuote');if(q)q.textContent=FQ[0];
     syncCar();
-    var bp=document.getElementById('btnPause');if(bp)bp.textContent='Pause';
-    var beginCb=document.getElementById('beginToggle'),psCb=document.getElementById('psToggle');
-    if(beginCb)beginCb.checked=false;
-    if(psCb)psCb.checked=false;
-    var pre=document.getElementById('scPreSession'),scf=document.getElementById('scFocus'),scb=document.getElementById('scBreak');
-    if(pre)pre.classList.remove('hidden');
-    if(scf)scf.classList.add('hidden');
-    if(scb)scb.classList.add('hidden');
+    var btn=$('btnStart'),quiz=$('quiz');
+    if(btn)btn.style.display='';
+    if(quiz)quiz.classList.remove('show');
+    quizStep=0;showQuizStep(0);
+    showScreen('scrStart');
   }
   function doBreak(){
     clearInterval(iv);iv=null;
-    bRem=300;bTotal=300;bExt=false;
-    var bt=document.getElementById('bTmr'),bf=document.getElementById('bFill');
-    if(bt)bt.textContent='05:00';if(bf)bf.style.width='100%';
-    ['e2','e5','e10'].forEach(function(id){var el=document.getElementById(id);if(el){el.disabled=false;el.style.opacity='';}});
+    bRem=300;bTotal=300;bExtended=false;
+    var t=$('breakTimer');if(t)t.textContent='05:00';
+    var b=$('breakBar');if(b)b.style.width='100%';
+    [$('btnExt2'),$('btnExt5'),$('btnExt10')].forEach(function(el){if(el){el.disabled=false;el.style.opacity='';}});
     nextBQ();
-    var scf=document.getElementById('scFocus'),scb=document.getElementById('scBreak');
-    if(scf)scf.classList.add('hidden');if(scb)scb.classList.remove('hidden');
-    runB();
+    showScreen('scrBreak');
+    runBreak();
   }
-  function doBack(){
+  function goBack(){
     clearInterval(iv);iv=null;
-    var scb=document.getElementById('scBreak'),scf=document.getElementById('scFocus');
-    if(scb)scb.classList.add('hidden');if(scf)scf.classList.remove('hidden');
-    runF();
+    showScreen('scrFocus');
+    runFocus();
   }
-  function extB(m){
-    if(bExt)return;
-    bExt=true;bTotal+=m*60;bRem+=m*60;
-    var bt=document.getElementById('bTmr'),bf=document.getElementById('bFill');
-    if(bt)bt.textContent=fmtM(bRem);if(bf)bf.style.width='100%';
-    ['e2','e5','e10'].forEach(function(id){var el=document.getElementById(id);if(el){el.disabled=true;el.style.opacity='0.3';}});
+  function extBreak(mins){
+    if(bExtended)return;
+    bExtended=true;bTotal+=mins*60;bRem+=mins*60;
+    var t=$('breakTimer');if(t)t.textContent=fmtMS(bRem);
+    var b=$('breakBar');if(b)b.style.width='100%';
+    [$('btnExt2'),$('btnExt5'),$('btnExt10')].forEach(function(el){if(el){el.disabled=true;el.style.opacity='0.3';}});
   }
-  function dismissWarn(){var tw=document.getElementById('tabWarn');if(tw)tw.classList.remove('show');tabWarnShown=false;}
-  window.beginFocus=beginFocus;window.doSnooze=doSnooze;window.doEnd=doEnd;window.doBreak=doBreak;window.togglePause=togglePause;window.doKeep=doKeep;window.doBack=doBack;window.extB=extB;window.dismissWarn=dismissWarn;
-  var beginCb=document.getElementById('beginToggle');
-  if(beginCb)beginCb.addEventListener('change',function(){if(this.checked)beginFocus();});
+  function dismissWarn(){var tw=$('tabWarn');if(tw)tw.classList.remove('show');tabWarnShown=false;}
+
+  function bind(id,fn){var el=$(id);if(el)el.addEventListener('click',fn);}
+  bind('btnStart',startQuiz);
+  bind('btnBegin',beginFocus);
+
+  document.querySelectorAll('#quiz .quiz-chip').forEach(function(chip){
+    chip.addEventListener('click',function(){
+      setTimeout(advanceQuiz,250);
+    });
+  });
+  bind('btnPause',function(e){e.preventDefault();togglePause();});
+  bind('btnSnooze',doSnooze);
+  bind('btnEnd',doEnd);
+  bind('btnBreak',doBreak);
+  bind('btnQuote',function(){nextFQ();});
+  bind('btnBackToWork',goBack);
+  bind('btnExt2',function(){extBreak(2);});
+  bind('btnExt5',function(){extBreak(5);});
+  bind('btnExt10',function(){extBreak(10);});
+  bind('btnDismissWarn',dismissWarn);
+
   var GOOGLE_SCRIPT_URL='https://script.google.com/macros/s/AKfycbynO2bLDH7i1JdoYuEq08SiXUA7EazgMS0yZtmHSlysEmE0eelMxGnAp2PursgXGOVU/exec';
   function initWl(){
-    var wlCb=document.getElementById('wlDone');
+    var wlCb=$('wlDone');
     if(wlCb)wlCb.addEventListener('change',function(){
       if(!this.checked)return;
-      var inp=document.getElementById('wlEmail');
+      var inp=$('wlEmail');
       var email=inp&&inp.value?inp.value.trim():'';
       if(!email){this.checked=false;return;}
       var scrollY=window.scrollY||window.pageYOffset;
@@ -808,8 +840,46 @@
       requestAnimationFrame(function(){requestAnimationFrame(function(){window.scrollTo(0,scrollY);});});
     });
   }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initWl);}else{initWl();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initWl);
+  else initWl();
 })();
+</script>
+
+<script>
+// #region agent log — rebuild verification
+(function(){
+  var EP='http://127.0.0.1:7434/ingest/37eaa82c-1b48-4d59-9475-a5eb08e4decd';
+  var SID='702e44';
+  function dlog(loc,msg,data){fetch(EP,{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':SID},body:JSON.stringify({sessionId:SID,location:loc,message:msg,data:data,timestamp:Date.now()})}).catch(function(){});}
+
+  window.addEventListener('load',function(){
+    var sky=document.querySelector('#scrStart .app-sky');
+    var cs=sky?getComputedStyle(sky):{};
+    dlog('rebuild:load','sky',{exists:!!sky,w:sky?sky.offsetWidth:0,h:sky?sky.offsetHeight:0,bg:cs.backgroundImage||'none',overflow:cs.overflow||''});
+
+    var car=document.querySelector('#scrStart .app-car img');
+    dlog('rebuild:load','car',{exists:!!car,w:car?car.offsetWidth:0,h:car?car.offsetHeight:0,natW:car?car.naturalWidth:0,ok:car?car.complete:false});
+
+    var flag=document.querySelector('#scrStart .app-flag img');
+    dlog('rebuild:load','flag',{exists:!!flag,w:flag?flag.offsetWidth:0,h:flag?flag.offsetHeight:0,natW:flag?flag.naturalWidth:0,ok:flag?flag.complete:false});
+
+    var ground=document.querySelector('#scrStart .app-ground');
+    dlog('rebuild:load','ground',{exists:!!ground,w:ground?ground.offsetWidth:0,h:ground?ground.offsetHeight:0});
+
+    var icons=document.querySelectorAll('#scrStart .app-icons img');
+    dlog('rebuild:load','icons',{count:icons.length,w:icons[0]?icons[0].offsetWidth:0,h:icons[0]?icons[0].offsetHeight:0});
+
+    var appUI=document.getElementById('appUI');
+    dlog('rebuild:load','appUI',{w:appUI?appUI.offsetWidth:0,h:appUI?appUI.offsetHeight:0});
+
+    var btnStart=document.getElementById('btnStart');
+    dlog('rebuild:load','btnStart',{exists:!!btnStart,w:btnStart?btnStart.offsetWidth:0,h:btnStart?btnStart.offsetHeight:0,display:btnStart?getComputedStyle(btnStart).display:''});
+
+    var btnBegin=document.getElementById('btnBegin');
+    dlog('rebuild:load','btnBegin',{exists:!!btnBegin,w:btnBegin?btnBegin.offsetWidth:0,h:btnBegin?btnBegin.offsetHeight:0});
+  });
+})();
+// #endregion
 </script>
 
 <!-- TEAM -->
@@ -907,7 +977,7 @@ try {
         scrollTrigger: {
           trigger: 'body',
           start: 'top top',
-          end: '+=900',
+          end: '+=1600',
           scrub: 1.4,
           pin: '#hero',
           pinSpacing: true,
@@ -923,7 +993,7 @@ try {
 
       /* Phase 2 (40-75%): laptop grows to 80vw, hero text fades */
       tl.to(laptop,
-        { width: '80vw', y: '-4vh', ease: 'power2.inOut', duration: 0.35 },
+        { width: '80vw', ease: 'power2.inOut', duration: 0.35 },
         0.4
       );
       tl.to(hi || {},
@@ -935,8 +1005,8 @@ try {
 
       /* Phase 4 (90-100%): laptop fades out as next section arrives */
       tl.to(laptop,
-        { yPercent: -130, ease: 'power2.in', duration: 0.18 },
-        0.90
+        { opacity: 0, y: -30, ease: 'power1.in', duration: 0.1 },
+        0.9
       );
     }
   }
