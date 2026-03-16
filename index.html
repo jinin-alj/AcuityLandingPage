@@ -845,43 +845,6 @@
 })();
 </script>
 
-<script>
-// #region agent log — rebuild verification
-(function(){
-  var EP='http://127.0.0.1:7434/ingest/37eaa82c-1b48-4d59-9475-a5eb08e4decd';
-  var SID='702e44';
-  function dlog(loc,msg,data){fetch(EP,{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':SID},body:JSON.stringify({sessionId:SID,location:loc,message:msg,data:data,timestamp:Date.now()})}).catch(function(){});}
-
-  window.addEventListener('load',function(){
-    var sky=document.querySelector('#scrStart .app-sky');
-    var cs=sky?getComputedStyle(sky):{};
-    dlog('rebuild:load','sky',{exists:!!sky,w:sky?sky.offsetWidth:0,h:sky?sky.offsetHeight:0,bg:cs.backgroundImage||'none',overflow:cs.overflow||''});
-
-    var car=document.querySelector('#scrStart .app-car img');
-    dlog('rebuild:load','car',{exists:!!car,w:car?car.offsetWidth:0,h:car?car.offsetHeight:0,natW:car?car.naturalWidth:0,ok:car?car.complete:false});
-
-    var flag=document.querySelector('#scrStart .app-flag img');
-    dlog('rebuild:load','flag',{exists:!!flag,w:flag?flag.offsetWidth:0,h:flag?flag.offsetHeight:0,natW:flag?flag.naturalWidth:0,ok:flag?flag.complete:false});
-
-    var ground=document.querySelector('#scrStart .app-ground');
-    dlog('rebuild:load','ground',{exists:!!ground,w:ground?ground.offsetWidth:0,h:ground?ground.offsetHeight:0});
-
-    var icons=document.querySelectorAll('#scrStart .app-icons img');
-    dlog('rebuild:load','icons',{count:icons.length,w:icons[0]?icons[0].offsetWidth:0,h:icons[0]?icons[0].offsetHeight:0});
-
-    var appUI=document.getElementById('appUI');
-    dlog('rebuild:load','appUI',{w:appUI?appUI.offsetWidth:0,h:appUI?appUI.offsetHeight:0});
-
-    var btnStart=document.getElementById('btnStart');
-    dlog('rebuild:load','btnStart',{exists:!!btnStart,w:btnStart?btnStart.offsetWidth:0,h:btnStart?btnStart.offsetHeight:0,display:btnStart?getComputedStyle(btnStart).display:''});
-
-    var btnBegin=document.getElementById('btnBegin');
-    dlog('rebuild:load','btnBegin',{exists:!!btnBegin,w:btnBegin?btnBegin.offsetWidth:0,h:btnBegin?btnBegin.offsetHeight:0});
-  });
-})();
-// #endregion
-</script>
-
 <!-- TEAM -->
 <section id="team" class="gl gl-dark">
   <p class="lbl rv">The Team</p>
