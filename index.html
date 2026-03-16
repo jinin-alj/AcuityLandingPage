@@ -34,12 +34,12 @@
       position: fixed; inset: 0; z-index: 0;
       transform: scale(1.12);
       will-change: filter;
-      background: url('assets/Acuity_base.png') center/cover no-repeat;
+      background: url('assets/backgrounds/Acuity_base.png') center/cover no-repeat;
       background-color: #7080a8;
       transition: background-image 0.5s ease;
     }
     #grad-bg.bg-blurred {
-      background-image: url('assets/Blurry_acuity.png');
+      background-image: url('assets/backgrounds/Blurry_acuity.png');
     }
     /* ── NAV ── */
     nav {
@@ -47,6 +47,8 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 2.5rem;
       transition: background 0.35s ease, backdrop-filter 0.35s ease;
+      height: 64px;
+      align-items: center;
     }
     nav.scrolled {
       background: rgba(10,10,20,0.82);
@@ -54,8 +56,8 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
       box-shadow: 0 1px 0 rgba(255,255,255,0.03);
     }
-    .nav-logo { font-family:var(--fd); font-size:1.4rem; font-weight:700; color:#fff; text-decoration:none; letter-spacing:-0.03em; display:flex; align-items:center; }
-    .nav-logo img { height:1.75rem; width:auto; display:none; }
+    .nav-logo { font-family:var(--fd); font-size:1.4rem; font-weight:700; color:#fff; text-decoration:none; letter-spacing:-0.03em; display:flex; align-items:center; overflow:visible; }
+    .nav-logo img { height: 7rem; width:auto; display:block; }
     .nav-logo span { display:inline; }
     .nav-links { display:flex; gap:2.2rem; list-style:none; }
     .nav-links a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem; font-weight:500; letter-spacing:0.02em; transition:color .25s; }
@@ -74,7 +76,7 @@
       display:flex; flex-direction:column; align-items:center; justify-content:center;
       text-align:center; padding:0 2rem;
     }
-    .hero-inner { position:relative; z-index:2; text-align:center; }
+    .hero-inner { position:relative; z-index:10; text-align:center; margin-bottom:2rem; }
     .waitlist-form { display:flex; gap:0.45rem; max-width:420px; width:100%; margin:0 auto; }
     .w-input {
       flex:1; padding:0.85rem 1.3rem; border-radius:100px;
@@ -414,14 +416,105 @@
       .ft { flex-direction:column; gap:1.2rem; text-align:center; }
       .s-card+.s-card { border-left:none; padding-left:0; border-top:1px solid rgba(0,0,0,0.1); padding-top:2.2rem; }
     }
+
+    /* ── HERO REBUILD ── */
+    #hero {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+      overflow: hidden;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 52vh;
+    }
+    .hero-logo-wrap { margin-bottom: 1.8rem; }
+    .hero-logo-img {
+      height: clamp(3rem, 8vw, 6rem);
+      width: auto;
+      filter: blur(16px);
+      opacity: 0.85;
+      transition: filter 1.4s ease, opacity 1.4s ease;
+      will-change: filter;
+      display: block;
+    }
+    .hero-logo-img.resolved { filter: blur(0px); opacity: 1; }
+    .hero-slogan {
+      font-family: var(--fd);
+      font-size: clamp(2rem, 4.5rem, 3.2rem);
+      font-weight: 700;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: sloganIn 1s 2s forwards ease;
+    }
+    @keyframes sloganIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HERO LAPTOP WRAP ── */
+    .hero-laptop-wrap {
+      position: fixed;
+      bottom: -8vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(72vw, 900px);
+      z-index: 3;
+      opacity: 0;
+      will-change: transform, opacity, width;
+      pointer-events: none;
+    }
+    .hlw-inner {
+      position: relative;
+      width: 100%;
+    }
+    .hlw-frame {
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .hlw-screen {
+      position: absolute;
+      top: 4.2%;
+      left: 11.5%;
+      right: 11.5%;
+      bottom: 10.5%;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hlw-mockup {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
 <div id="grad-bg"></div>
 
 <nav id="nav">
-  <a href="#" class="nav-logo"><img src="assets/Acuity_logo.png" alt="Acuity" class="nav-logo-img" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span>Acuity.</span></a>
+  <a href="#" class="nav-logo"><img src="assets/logo/Acuity.png" alt="Acuity" class="nav-logo-img"></a>
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
     <li><a href="#features">Solution</a></li>
@@ -433,9 +526,20 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-inner" id="heroInner"></div>
-  <div class="scroll-cue"><div class="cue-line"></div><span>scroll</span></div>
+  <div class="hero-inner" id="heroInner">
+    <p class="hero-slogan">Manage time, not energy. Lock in.</p>
+  </div>
+  <div class="scroll-cue" id="scrollCue"><div class="cue-line"></div><span>scroll</span></div>
 </section>
+
+<div class="hero-laptop-wrap" id="heroLaptop">
+  <div class="hlw-inner">
+    <img src="assets/mockups/laptopmockup.png" class="hlw-frame" alt="Acuity app">
+    <div class="hlw-screen">
+      <img src="assets/mockups/final_mockup.png" class="hlw-mockup" alt="Acuity focus session">
+    </div>
+  </div>
+</div>
 
 <div class="content">
 
@@ -551,23 +655,12 @@
             <div class="a-sky" id="skFocus">
               <div class="road"></div>
               <!-- Checkpoints -->
-              <div class="chk" style="left:28%"><svg width="18" height="30" viewBox="0 0 18 30"><rect x="7" y="0" width="2" height="28" fill="#1a1a1a"/><rect x="9" y="1" width="9" height="6" fill="#1a1a1a" opacity="0.75"/><rect x="9" y="1" width="4.5" height="3" fill="white" opacity="0.65"/><rect x="13.5" y="4" width="4.5" height="3" fill="white" opacity="0.65"/></svg></div>
-              <div class="chk" style="left:57%"><svg width="18" height="30" viewBox="0 0 18 30"><rect x="7" y="0" width="2" height="28" fill="#1a1a1a"/><rect x="9" y="1" width="9" height="6" fill="#1a1a1a" opacity="0.75"/><rect x="9" y="1" width="4.5" height="3" fill="white" opacity="0.65"/><rect x="13.5" y="4" width="4.5" height="3" fill="white" opacity="0.65"/></svg></div>
+              <div class="chk" style="left:28%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
+              <div class="chk" style="left:57%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
               <div class="chk chk-flag" style="left:86%"><svg width="24" height="36" viewBox="0 0 24 36"><rect x="10" y="0" width="2" height="34" fill="#1a1a1a"/><rect x="12" y="2" width="4" height="4" fill="#fff"/><rect x="16" y="2" width="4" height="4" fill="#1a1a1a"/><rect x="12" y="6" width="4" height="4" fill="#1a1a1a"/><rect x="16" y="6" width="4" height="4" fill="#fff"/><rect x="12" y="10" width="4" height="4" fill="#fff"/><rect x="16" y="10" width="4" height="4" fill="#1a1a1a"/></svg></div>
               <!-- Car -->
               <div class="a-car" id="car" style="left:6%">
-                <svg width="60" height="36" viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg">
-                  <!-- body -->
-                  <rect x="4" y="18" width="50" height="12" rx="3" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-                  <!-- roof/cabin -->
-                  <path d="M14 18 L18 10 L38 10 L42 18 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round"/>
-                  <!-- windows -->
-                  <rect x="19" y="12" width="7" height="5" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="0.8"/>
-                  <rect x="29" y="12" width="7" height="5" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="0.8"/>
-                  <!-- wheels -->
-                  <circle cx="18" cy="30" r="5" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-                  <circle cx="42" cy="30" r="5" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-                </svg>
+                <img src="assets/animations/In place loop gif.gif" alt="" style="height:36px;width:auto;display:block;">
               </div>
             </div>
             <div class="a-bot">
@@ -596,18 +689,11 @@
             </div>
             <div class="a-sky break-mode" id="skBreak">
               <div class="road"></div>
-              <div class="chk" style="left:28%"><svg width="18" height="30" viewBox="0 0 18 30"><rect x="7" y="0" width="2" height="28" fill="#1a1a1a"/><rect x="9" y="1" width="9" height="6" fill="#1a1a1a" opacity="0.75"/><rect x="9" y="1" width="4.5" height="3" fill="white" opacity="0.65"/><rect x="13.5" y="4" width="4.5" height="3" fill="white" opacity="0.65"/></svg></div>
-              <div class="chk" style="left:57%"><svg width="18" height="30" viewBox="0 0 18 30"><rect x="7" y="0" width="2" height="28" fill="#1a1a1a"/><rect x="9" y="1" width="9" height="6" fill="#1a1a1a" opacity="0.75"/><rect x="9" y="1" width="4.5" height="3" fill="white" opacity="0.65"/><rect x="13.5" y="4" width="4.5" height="3" fill="white" opacity="0.65"/></svg></div>
+              <div class="chk" style="left:28%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
+              <div class="chk" style="left:57%"><img src="assets/animations/animated checkpoint GIF .gif" alt="" style="height:30px;width:auto;display:block;"></div>
               <div class="chk chk-flag" style="left:86%"><svg width="24" height="36" viewBox="0 0 24 36"><rect x="10" y="0" width="2" height="34" fill="#1a1a1a"/><rect x="12" y="2" width="4" height="4" fill="#fff"/><rect x="16" y="2" width="4" height="4" fill="#1a1a1a"/><rect x="12" y="6" width="4" height="4" fill="#1a1a1a"/><rect x="16" y="6" width="4" height="4" fill="#fff"/><rect x="12" y="10" width="4" height="4" fill="#fff"/><rect x="16" y="10" width="4" height="4" fill="#1a1a1a"/></svg></div>
               <div class="a-car" id="carB" style="left:6%">
-                <svg width="60" height="36" viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="4" y="18" width="50" height="12" rx="3" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-                  <path d="M14 18 L18 10 L38 10 L42 18 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.5" stroke-linejoin="round"/>
-                  <rect x="19" y="12" width="7" height="5" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="0.8"/>
-                  <rect x="29" y="12" width="7" height="5" fill="#e8e8e8" stroke="#1a1a1a" stroke-width="0.8"/>
-                  <circle cx="18" cy="30" r="5" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-                  <circle cx="42" cy="30" r="5" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
-                </svg>
+                <img src="assets/animations/In place loop gif.gif" alt="" style="height:36px;width:auto;display:block;">
               </div>
             </div>
             <div class="a-bot">
@@ -759,20 +845,20 @@
   <div class="t-grid">
     <!-- Add photo at assets/team/jinin.jpg when available -->
     <div class="t-card rv">
-      <div class="t-photo t-photo-empty"></div><!-- add assets/team/jinin.jpg when available -->
+      <div class="t-photo"><img src="assets/team/Jinin_profile.png" alt="Jinin Aljayyousi"/></div>
       <p class="t-name">Jinin Aljayyousi</p>
       <p class="t-role">Co-Founder</p>
       <p class="t-email"><a href="/cdn-cgi/l/email-protection#d9b3b8b6b8b5b3b8a0a0b6acaaf7b0bcacebe9ebed99aaadacbdbcb7adf7b0bcf7bcbdac"><span class="__cf_email__" data-cfemail="caa0aba5aba6a0abb3b3a5bfb9e4a3afbff8faf8fe8ab9bebfaeafa4bee4a3afe4afaebf">[email&#160;protected]</span></a></p>
     </div>
     <div class="t-card rv" style="transition-delay:.1s">
-      <div class="t-photo"><img src="assets/team/Nikita%20profile.JPG" alt="Nikita Djandjgava"/></div>
+      <div class="t-photo"><img src="assets/team/Nikita_profile.JPG" alt="Nikita Djandjgava"/></div>
       <p class="t-name">Nikita Djandjgava</p>
       <p class="t-role">Co-Founder</p>
       <p class="t-email"><a href="/cdn-cgi/l/email-protection#1779737d76797d7370766176252725235764636273727963397e7239727362"><span class="__cf_email__" data-cfemail="68060c020906020c0f091e095a585a5c281b1c1d0c0d061c46010d460d0c1d">[email&#160;protected]</span></a></p>
     </div>
     <!-- Add photo at assets/team/luc.jpg when available -->
     <div class="t-card rv" style="transition-delay:.2s">
-      <div class="t-photo t-photo-empty"><!-- placeholder --></div>
+      <div class="t-photo"><img src="assets/team/Luc_profile.jpeg" alt="Luc De Roode"/></div>
       <p class="t-name">Luc De Roode</p>
       <p class="t-role">Co-Founder</p>
       <p class="t-email"><a href="/cdn-cgi/l/email-protection#88e4ede2ecedfae7e7eceda6e1edfdbab8babdc8fbfcfdecede6fca6e1eda6edecfd"><span class="__cf_email__" data-cfemail="38545d525c5d4a57575c5d16515d4d0a080a0d784b4c4d5c5d564c16515d165d5c4d">[email&#160;protected]</span></a></p>
@@ -808,35 +894,76 @@ try {
   var bg = document.getElementById('grad-bg');
   var hi = document.getElementById('heroInner');
   var nv = document.getElementById('nav');
+  var scrollCue = document.getElementById('scrollCue');
+
   function onScroll() {
-    var y = window.scrollY || document.documentElement.scrollTop || 0;
-    var vh = window.innerHeight;
-    if(bg) bg.classList.toggle('bg-blurred', y > vh * 0.3);
-    if(hi) { hi.style.opacity = Math.max(1 - y/(vh*0.5), 0); hi.style.transform = 'translateY(' + (y*0.11) + 'px)'; }
+    var y = window.scrollY || 0;
+    if(bg) bg.classList.toggle('bg-blurred', y > window.innerHeight * 0.3);
     if(nv) nv.classList.toggle('scrolled', y > 60);
-    var vh2 = window.innerHeight;
+    if(scrollCue) scrollCue.style.opacity = Math.max(1 - y / 120, 0);
     document.querySelectorAll('.s-num[data-t]').forEach(function(el) {
       if(el.dataset.anim === '1') return;
       var r = el.getBoundingClientRect();
-      if(r.top < vh2 + 80) {
+      if(r.top < window.innerHeight + 80) {
         el.dataset.anim = '1';
         var t = +el.dataset.t; var c = 0;
-        var iv = setInterval(function() { c = Math.min(c + t/55, t); el.textContent = Math.round(c)+'%'; if(c>=t) clearInterval(iv); }, 16);
+        var iv = setInterval(function() {
+          c = Math.min(c + t/55, t);
+          el.textContent = Math.round(c)+'%';
+          if(c >= t) clearInterval(iv);
+        }, 16);
       }
     });
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
-  function getSky() {
-    var h = new Date().getHours() + new Date().getMinutes()/60;
-    if (h < 5)  return 'linear-gradient(to bottom,#04061a 0%,#0d0d2a 35%,#1a1045 65%,#2c1b65 100%)';
-    if (h < 7)  return 'linear-gradient(to bottom,#150e3a 0%,#2d1b65 28%,#8a4a90 52%,#c83838 72%,#d07868 100%)';
-    if (h < 9)  return 'linear-gradient(to bottom,#28336e 0%,#7050a0 28%,#c83838 55%,#d08050 78%,#e0c080 100%)';
-    if (h < 12) return 'linear-gradient(to bottom,#3a60a0 0%,#5080c0 30%,#72a8da 60%,#a8ccee 85%,#c8e2f8 100%)';
-    if (h < 16) return 'linear-gradient(to bottom,#2860c0 0%,#4080d0 28%,#60a8e8 55%,#98cef5 80%,#c0e4fc 100%)';
-    if (h < 18) return 'linear-gradient(to bottom,#183870 0%,#3a60b8 22%,#8060a0 46%,#c83838 66%,#d88060 84%,#e8c070 100%)';
-    if (h < 20) return 'linear-gradient(to bottom,#0c1838 0%,#1a2860 26%,#623898 50%,#903858 70%,#d07860 90%)';
-    if (h < 22) return 'linear-gradient(to bottom,#060c1e 0%,#0e1438 28%,#1e1258 52%,#2c1862 76%,#3a1878 100%)';
-    return 'linear-gradient(to bottom,#04061a 0%,#0d0d2a 35%,#1a1045 65%,#2c1b65 100%)';
+
+  /* Logo resolve */
+  var logoImg = document.getElementById('heroLogoImg');
+  if(logoImg) setTimeout(function(){ logoImg.classList.add('resolved'); }, 1800);
+
+  /* GSAP scroll sequence */
+  if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+    var laptop = document.getElementById('heroLaptop');
+
+    if(laptop) {
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top top',
+          end: '+=1600',
+          scrub: 1.4,
+          pin: '#hero',
+          pinSpacing: true,
+        }
+      });
+
+      /* Phase 1 (0-40%): laptop rises in */
+      tl.fromTo(laptop,
+        { opacity: 0, y: 80 },
+        { opacity: 1, y: 0, ease: 'power2.out', duration: 0.4 },
+        0
+      );
+
+      /* Phase 2 (40-75%): laptop grows to 80vw, hero text fades */
+      tl.to(laptop,
+        { width: '80vw', ease: 'power2.inOut', duration: 0.35 },
+        0.4
+      );
+      tl.to(hi || {},
+        { opacity: 0, ease: 'power1.in', duration: 0.2 },
+        0.4
+      );
+
+      /* Phase 3 (75-90%): hold at full size */
+
+      /* Phase 4 (90-100%): laptop fades out as next section arrives */
+      tl.to(laptop,
+        { opacity: 0, y: -30, ease: 'power1.in', duration: 0.1 },
+        0.9
+      );
+    }
   }
 } catch (_) {}
+</script>
