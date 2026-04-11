@@ -1,0 +1,28 @@
+{
+  "name": "acuity-landing-page",
+  "version": "1.0.0",
+  "description": "Acuity - Adaptive focus guidance for students",
+  "scripts": {
+    "dev": "npx serve .",
+    "preview": "npx serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinin-alj/AcuityLandingPage.git"
+  },
+  "keywords": [
+    "acuity",
+    "focus",
+    "study",
+    "landing-page"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jinin-alj/AcuityLandingPage/issues"
+  },
+  "homepage": "https://github.com/jinin-alj/AcuityLandingPage#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
