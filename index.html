@@ -265,13 +265,13 @@
     .problem-stage > *{ position:absolute; }
 
     .prob-title{
-      left:555px; top:350px; width:402px; text-align:center;
+      left:555px; top:250px; width:402px; text-align:center;
       font-family:var(--fm); font-weight:300; font-size:55px; line-height:1.1;
       letter-spacing:-0.02em; color:var(--coral);
     }
 
     .prob-head{
-      left:171px; top:420px; width:1152px; text-align:center;
+      left:171px; top:320px; width:1152px; text-align:center;
       font-family:var(--fm); font-weight:800; font-size:90px; line-height:1.115;
       letter-spacing:-0.025em; color:var(--navy);
     }
@@ -280,7 +280,7 @@
     .prob-dot-holder{ position:relative; }
     .prob-dot{ position:absolute; right:2px; bottom:25px; width:20px; height:20px; }
 
-    .prob-stat{ width:450px; top:622px; text-align:center; }
+    .prob-stat{ width:450px; top:522px; text-align:center; }
     .prob-stat.col1{ left:79px; }
     .prob-stat.col2{ left:539px; }
     .prob-stat.col3{ left:983px; }
@@ -296,28 +296,64 @@
       letter-spacing:-0.02em; color:#1f1f1f;
     }
 
-    /*features*/
-    .feat{ gap:.4rem; }
-    .feat .eyebrow{ color:var(--coral); font-weight:500; font-style:normal; }
-    .feat-title{
-      font-family:var(--fm); font-weight:800; color:var(--blue);
-      font-size:clamp(2.2rem,6.6vw,5.2rem); line-height:1.05; letter-spacing:-0.02em;
-      margin:.4rem 0 1.2rem; max-width:16ch;
-    }
-    .feat-sub{ color:var(--blue); font-weight:500; font-size:clamp(1.05rem,2.6vw,1.7rem); opacity:.82; max-width:30ch; line-height:1.45; }
-    .feat-intro .feat-title{ font-weight:700; font-size:clamp(1.8rem,5vw,3.6rem); max-width:22ch; }
-    .feat-intro .acc{ color:var(--salmon); }
-
     /*demo*/
-    .demo-head{ font-family:var(--fm); font-weight:500; color:var(--salmon); font-size:clamp(1.8rem,4.6vw,2.9rem); margin-bottom:.5rem; }
-    .demo-sub{ color:var(--blue); font-weight:500; font-size:clamp(.95rem,2.2vw,1.25rem); margin-bottom:2.2rem; opacity:.85; }
-
-    /*tablet*/
-    .tablet{
-      width:min(92vw,560px); background:#111; border-radius:30px; padding:14px;
-      box-shadow:var(--shadow-lg); border:3px solid #0a0a0a; position:relative;
+    #app{ height:100vh; min-height:982px; display:block; padding:0; overflow:hidden; }
+    .demo-stage{
+      position:absolute; left:50%; top:0; transform:translateX(-50%);
+      width:1512px; height:982px;
     }
-    .tablet-screen{ border-radius:18px; overflow:hidden; aspect-ratio:4/3; position:relative; background:#e8dcc8; }
+    .demo-stage > *{ position:absolute; margin:0; }
+    .demo-head{
+      left:0; right:0; top:250px; text-align:center;
+      font-family:var(--fm); font-weight:300; font-size:55px; line-height:1.1;
+      letter-spacing:-0.01em; color:var(--coral);
+    }
+    .demo-sub{
+      left:0; right:0; top:315px; text-align:center;
+      font-family:var(--fm); font-weight:400; font-size:20px; line-height:1.3;
+      color:var(--navy);
+    }
+    .tablet{
+      left:377px; top:350px; width:755.57px; height:496.16px;
+      background:#111; border-radius:30px; padding:14px;
+      box-shadow:var(--shadow-lg); border:3px solid #0a0a0a;
+    }
+    .tablet-screen{ border-radius:18px; overflow:hidden; height:100%; position:relative; background:#e8dcc8; }
+
+    /*features*/
+    .feat{ height:100vh; min-height:982px; display:block; padding:0; overflow:hidden; }
+    .feat-stage{
+      position:absolute; left:50%; top:0; transform:translateX(-50%);
+      width:1512px; height:982px;
+    }
+    .feat-stage > *{ position:absolute; left:0; right:0; margin:0; text-align:center; }
+    .feat .eyebrow{
+      top:298px;
+      font-family:var(--fm); font-weight:300; font-size:64px; line-height:1.1;
+      letter-spacing:-0.01em; color:var(--coral);
+    }
+    .feat-title{
+      top:452px;
+      font-family:var(--fm); font-weight:800; font-size:96px; line-height:1.1;
+      letter-spacing:-0.02em; color:var(--navy);
+      text-shadow:0 7px 16px rgba(17,54,146,0.4);
+    }
+    .feat-sub{
+      top:599px;
+      font-family:var(--fm); font-weight:400; font-size:48px; line-height:1.5;
+      letter-spacing:-0.02em; color:var(--blue-mid);
+    }
+    /*app value proposition*/
+    .feat-intro .eyebrow{ top:260px; }
+    .feat-intro .feat-title{
+      top:350px; left:72px; right:auto; width:1368px; text-align:center;
+      font-weight:800; font-size:63px; line-height:96px; letter-spacing:-0.02em;
+      color:var(--blue-mid); text-shadow:none;
+    }
+    .feat-intro .feat-title .vpl{ display:block; }
+    .vp-acuity{ height:2.0em; width:auto; vertical-align:-0.40em; }
+    .vp-dot-holder{ position:relative; }
+    .vp-dot{ position:absolute; right:-3px; bottom:16px; width:19px; height:19px; }
 
     /*demo ui*/
     #appUI{ width:100%; height:100%; position:relative; font-family:var(--fm); overflow:hidden; }
@@ -372,7 +408,8 @@
     .app-tab-dismiss{ background:rgba(255,255,255,.22); border:none; border-radius:100px; color:#fff; font-family:var(--fm); font-size:.62rem; font-weight:600; padding:3px 10px; cursor:pointer; }
 
     /*pricing*/
-    #pricing .eyebrow{ color:var(--salmon); font-family:var(--fm); font-weight:500; font-size:clamp(1.8rem,4.4vw,2.7rem); }
+    #pricing{ justify-content:flex-start; padding-top:250px; }
+    #pricing .eyebrow{ color:var(--coral); font-family:var(--fm); font-weight:300; font-size:clamp(1.8rem,4.4vw,2.7rem); }
     .price-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1rem,2.5vw,2rem); width:100%; max-width:1080px; align-items:stretch; }
     .price-card{
       position:relative; border:none; cursor:pointer; padding:0;
@@ -381,19 +418,29 @@
       box-shadow:var(--shadow); transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
       display:block; text-align:left;
     }
-    .price-card::after{ content:''; position:absolute; inset:0; border-radius:26px; box-shadow:inset 0 1px 1px rgba(255,255,255,.35); pointer-events:none; }
+    /* toggled (-2) artwork crossfades over the default artwork */
+    .price-card::before{
+      content:''; position:absolute; inset:0; border-radius:26px; z-index:1;
+      background-size:cover; background-position:center;
+      opacity:0; transition:opacity .45s ease; pointer-events:none;
+    }
+    .pc-academic::before{ background-image:url('assets/pricing cards/academic-2.png'); }
+    .pc-lifetime::before{ background-image:url('assets/pricing cards/lifetime-2.png'); }
+    .pc-on::before{ opacity:1; }
+    .price-card::after{ content:''; position:absolute; inset:0; border-radius:26px; box-shadow:inset 0 1px 1px rgba(255,255,255,.35); pointer-events:none; z-index:3; }
     .price-card:hover{ transform:translateY(-10px) scale(1.015); box-shadow:var(--shadow-lg); }
     .price-card:active{ transform:translateY(-4px) scale(.99); }
     .pc-standard{ background-image:url('assets/pricing cards/Standard.png'); }
     .pc-academic{ background-image:url('assets/pricing cards/Academic.png'); }
     .pc-lifetime{ background-image:url('assets/pricing cards/Lifetime.png'); }
-    .pc-body{ position:absolute; left:0; right:0; bottom:0; padding:8% 9% 8%; display:flex; flex-direction:column; gap:.35rem; }
+    .pc-body{ position:absolute; left:0; right:0; bottom:0; padding:8% 9% 8%; display:flex; flex-direction:column; gap:.35rem; z-index:2; }
     .pc-feat{ color:rgba(255,255,255,.95); font-weight:600; font-size:clamp(.85rem,1.7vw,1.15rem); text-shadow:0 1px 6px rgba(0,0,0,.18); }
     .pc-feat.sub{ font-weight:500; opacity:.92; }
     .pc-actions{ display:flex; align-items:center; justify-content:space-between; gap:.5rem; margin-top:1.1rem; }
-    .pc-toggle{ width:46px; height:26px; border-radius:100px; background:rgba(255,255,255,.45); position:relative; flex:0 0 auto; transition:background .25s; }
+    .pc-toggle{ width:46px; height:26px; border-radius:100px; background:rgba(255,255,255,.45); position:relative; flex:0 0 auto; transition:background .25s; cursor:pointer; }
     .pc-toggle::after{ content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .25s; }
-    .pc-card-on .pc-toggle::after{ transform:translateX(20px); }
+    .pc-on .pc-toggle{ background:rgba(255,255,255,.7); }
+    .pc-on .pc-toggle::after{ transform:translateX(20px); }
     .pc-get{
       background:rgba(255,255,255,.35); color:#fff; font-weight:700; font-family:var(--fm);
       padding:.6rem 1.4rem; border-radius:100px; font-size:clamp(.85rem,1.7vw,1.05rem);
@@ -402,11 +449,25 @@
     }
     .price-card:hover .pc-get{ background:rgba(255,255,255,.6); color:var(--blue-deep); }
 
-    /*team*/
-    #team .eyebrow{ font-family:var(--fd); font-style:italic; color:var(--salmon); font-weight:600; font-size:clamp(1.8rem,4.4vw,2.7rem); margin-bottom:.8rem; }
-    .t-head{ font-family:var(--fm); font-weight:800; color:var(--blue-deep); font-size:clamp(2rem,5.6vw,4rem); letter-spacing:-0.02em; margin-bottom:1rem; }
-    .t-sub{ color:var(--blue); font-weight:500; opacity:.8; font-size:clamp(.95rem,2vw,1.2rem); margin-bottom:3rem; max-width:48ch; }
-    .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,2.5vw,2rem); width:100%; max-width:1020px; }
+    /* ───────────────────────── TEAM ───────────────────────── */
+    #team{ height:100vh; min-height:982px; display:block; padding:0; overflow:hidden; }
+    .team-stage{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:1512px; height:982px; }
+    .team-stage > *{ position:absolute; left:0; right:0; margin:0; text-align:center; }
+    #team .eyebrow{
+      top:270px; font-family:var(--fm); font-style:normal; font-weight:300; font-size:64px;
+      line-height:1.1; letter-spacing:-0.01em; color:var(--coral);
+    }
+    .t-head{
+      top:350px; font-family:var(--fm); font-weight:800; color:var(--navy);
+      font-size:64px; line-height:1.1; letter-spacing:-0.02em; white-space:nowrap;
+    }
+    .t-dot-holder{ position:relative; }
+    .t-dot{ position:absolute; right:3px; bottom:16px; width:13px; height:13px; }
+    .t-sub{ top:450px; color:var(--blue-mid); font-weight:400; font-size:24px; line-height:1.3; letter-spacing:-0.01em; }
+    .t-grid{
+      top:513px; left:50%; right:auto; transform:translateX(-50%); width:1096px;
+      display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,2.5vw,2rem);
+    }
     .t-card{
       border-radius:26px; padding:2.4rem 1.6rem 2rem; text-align:center;
       border:1px solid rgba(255,255,255,.6);
@@ -428,13 +489,18 @@
     .t-email a{ color:#8a8176; font-size:.82rem; text-decoration:none; word-break:break-all; transition:color .2s; }
     .t-email a:hover{ color:var(--blue); }
 
-    /*waitlist*/
-    #waitlist .eyebrow{ color:var(--salmon); }
-    .w-head{ font-family:var(--fm); font-weight:800; color:var(--blue-deep); font-size:clamp(2.6rem,9vw,6.4rem); line-height:1; letter-spacing:-0.02em; margin-bottom:1.4rem; }
+    /* ───────────────────────── WAITLIST ───────────────────────── */
+    #waitlist{ height:100vh; min-height:982px; display:block; padding:0; overflow:hidden; }
+    .w-stage{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:1512px; height:982px; }
+    .w-form-wrap{ position:absolute; left:0; right:0; top:258px; text-align:center; }
+    #waitlist .eyebrow{ color:var(--coral); font-family:var(--fm); font-weight:300; font-size:64px; line-height:1.1; letter-spacing:-0.01em; margin:0 0 24px; }
+    .w-head{ font-family:var(--fm); font-weight:800; color:var(--navy); font-size:100px; line-height:1.2; letter-spacing:-0.02em; margin:0 0 30px; }
     .w-head .lock{ display:block; }
-    .w-sub-a{ color:var(--blue); font-weight:600; font-size:clamp(1.1rem,2.6vw,1.6rem); margin-bottom:.5rem; }
-    .w-sub-b{ color:var(--blue); font-weight:500; opacity:.72; font-size:clamp(.9rem,1.8vw,1.05rem); margin-bottom:2.2rem; }
-    .w-form{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; width:100%; max-width:620px; }
+    .w-dot-holder{ position:relative; }
+    .w-dot{ position:absolute; right:3px; bottom:28px; width:22px; height:22px; }
+    .w-sub-a{ color:var(--blue-mid); font-weight:600; font-size:28px; line-height:1.2; margin:0 0 12px; }
+    .w-sub-b{ color:var(--blue-mid); font-weight:500; opacity:.82; font-size:18px; line-height:1.3; margin:0 0 36px; }
+    .w-form{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; width:100%; max-width:620px; margin:0 auto; }
     .w-input{
       flex:1 1 200px; min-width:0; padding:1rem 1.5rem; border-radius:100px;
       border:1.5px solid rgba(120,100,90,.25); background:rgba(255,255,255,.7);
@@ -446,7 +512,7 @@
     .w-input.invalid{ border-color:var(--red); }
     .w-msg{ margin-top:1rem; font-size:.95rem; font-weight:600; min-height:1.2rem; }
     .w-msg.ok{ color:var(--blue); } .w-msg.err{ color:var(--red); }
-    .w-success{ display:none; max-width:560px; }
+    .w-success{ position:absolute; left:0; right:0; top:300px; width:560px; max-width:90%; margin:0 auto; text-align:center; display:none; }
     .w-success.show{ display:block; animation:popIn .6s cubic-bezier(.22,1,.36,1); }
     @keyframes popIn{ from{opacity:0; transform:translateY(20px) scale(.97);} to{opacity:1; transform:none;} }
     .w-success h3{ font-family:var(--fm); font-weight:800; color:var(--blue-deep); font-size:clamp(1.8rem,4.5vw,2.8rem); margin-bottom:.8rem; }
@@ -455,15 +521,20 @@
     .share-link{ display:flex; align-items:center; gap:.5rem; background:rgba(255,255,255,.7); border:1.5px solid rgba(120,100,90,.2); border-radius:100px; padding:.6rem 1rem .6rem 1.3rem; font-size:.9rem; color:#5c554c; max-width:100%; }
     .share-link code{ font-family:var(--fm); font-weight:600; color:var(--blue); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:230px; }
 
-    /*footer*/
-    footer{ position:relative; z-index:2; padding:2.5rem clamp(1.2rem,5vw,3rem) 3rem; border-top:1px solid rgba(120,100,90,.16); display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
-    .ft-left{ display:flex; align-items:center; gap:.7rem; }
-    .ft-left img{ height:30px; width:auto; }
-    .ft-left span{ font-family:var(--fd); font-weight:800; color:var(--blue-deep); font-size:1.4rem; }
-    .ft-links{ display:flex; gap:1.6rem; }
-    .ft-links a{ color:#8a8176; text-decoration:none; font-size:.88rem; font-weight:500; transition:color .2s; }
-    .ft-links a:hover{ color:var(--blue); }
-    .ft-copy{ color:#a59c90; font-size:.8rem; }
+    /* ───────────────────────── FOOTER ───────────────────────── */
+    .site-footer{
+      position:relative; z-index:2; width:100%; aspect-ratio:3024/392;
+      background:url('assets/logo/footer.png') center/cover no-repeat;
+      display:flex; align-items:center; justify-content:flex-end;
+      padding:0 clamp(2rem,6vw,6rem);
+      scroll-snap-align:end;
+    }
+    .ft-cols{ display:flex; gap:clamp(2.4rem,6vw,6rem); }
+    .ft-col{ display:flex; flex-direction:column; gap:.55rem; text-align:left; }
+    .ft-h{ font-family:var(--fm); font-weight:700; color:var(--offwhite); font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; opacity:.95; margin-bottom:.25rem; }
+    .ft-col a{ font-family:var(--fm); font-weight:500; color:var(--offwhite); opacity:.82; text-decoration:none; font-size:.95rem; line-height:1.1; transition:opacity .2s; width:max-content; }
+    .ft-col a:hover{ opacity:1; text-decoration:underline; }
+    .ft-bottom{ position:absolute; left:50%; transform:translateX(-50%); bottom:.7rem; font-family:var(--fm); font-weight:500; font-size:.74rem; color:var(--offwhite); opacity:.65; white-space:nowrap; }
 
     /*responsive*/
     @media (max-width:860px){
@@ -474,9 +545,9 @@
         padding:1.5rem; border-radius:24px;
       }
       .nav-toggle{ display:flex; }
-      .price-grid, .t-grid{ grid-template-columns:1fr; }
-      .price-grid{ max-width:380px; gap:1.4rem; }
-      footer{ flex-direction:column; text-align:center; }
+      .price-grid{ grid-template-columns:1fr; max-width:380px; gap:1.4rem; }
+      .site-footer{ justify-content:center; padding:0 1.2rem; }
+      .ft-cols{ gap:1.8rem; }
     }
 
     /*debugging*/
@@ -542,38 +613,9 @@
     </div>
   </section>
 
-  <!--features-->
-  <section class="feat feat-intro" id="features">
-    <p class="eyebrow rv">Your focus, visualized.</p>
-    <h2 class="feat-title rv rv-2"><span class="acc">Acuity</span> reads your cognitive state using passive signals without any wearables  or interruptions, so you always know when to push and when to rest</h2>
-  </section>
-
-  <section class="feat">
-    <p class="eyebrow rv">Your focus, visualized.</p>
-    <h2 class="feat-title rv rv-2">Passive Signal Detection</h2>
-    <p class="feat-sub rv rv-3">No need for hardware or external devices.</p>
-  </section>
-
-  <section class="feat">
-    <p class="eyebrow rv">Your focus, visualized.</p>
-    <h2 class="feat-title rv rv-2">Right-Timed Breaks</h2>
-    <p class="feat-sub rv rv-3">Recover faster.</p>
-  </section>
-
-  <section class="feat">
-    <p class="eyebrow rv">Your focus, visualized.</p>
-    <h2 class="feat-title rv rv-2">Personalized Rhythm</h2>
-    <p class="feat-sub rv rv-3">Start studying at your own pace.</p>
-  </section>
-
-  <section class="feat">
-    <p class="eyebrow rv">Your focus, visualized.</p>
-    <h2 class="feat-title rv rv-2">Transparent by Design</h2>
-    <p class="feat-sub rv rv-3">Your data, your control. Full visibility into the signals Acuity reads.</p>
-  </section>
-
   <!--demo-->
   <section id="app">
+   <div class="demo-stage">
     <h2 class="demo-head rv">See it in Action</h2>
     <p class="demo-sub rv rv-2">Every session is a drive. The further you go, the deeper you focused.</p>
     <div class="tablet rv rv-3">
@@ -689,6 +731,51 @@
         </div><!--app ui-->
       </div>
     </div>
+   </div><!--demo stage-->
+  </section>
+
+  <!--app value proposition-->
+  <section class="feat feat-intro" id="features">
+    <div class="feat-stage">
+      <p class="eyebrow rv">Your focus, visualized.</p>
+      <h2 class="feat-title rv rv-2"><span class="vpl"><img class="vp-acuity" src="assets/logo/text.png" alt="Acuity"> reads your cognitive state</span><span class="vpl">using passive signals without any wearables</span><span class="vpl">or interruptions, so you always know when to</span><span class="vpl">push and when to rest<span class="vp-dot-holder">.<img class="vp-dot" src="assets/logo/dot.svg" alt=""></span></span></h2>
+    </div>
+  </section>
+
+  <!--feature 1-->
+  <section class="feat">
+    <div class="feat-stage">
+      <p class="eyebrow rv">Your focus, visualized.</p>
+      <h2 class="feat-title rv rv-2">Passive Signal Detection</h2>
+      <p class="feat-sub rv rv-3">No need for hardware or external devices</p>
+    </div>
+  </section>
+
+  <!--feature 2-->
+  <section class="feat">
+    <div class="feat-stage">
+      <p class="eyebrow rv">Your focus, visualized.</p>
+      <h2 class="feat-title rv rv-2">Right-Timed Breaks</h2>
+      <p class="feat-sub rv rv-3">Recover faster</p>
+    </div>
+  </section>
+
+  <!--feature 3-->
+  <section class="feat">
+    <div class="feat-stage">
+      <p class="eyebrow rv">Your focus, visualized.</p>
+      <h2 class="feat-title rv rv-2">Personalized Rhythm</h2>
+      <p class="feat-sub rv rv-3">Start studying at your own pace</p>
+    </div>
+  </section>
+
+  <!--feature 4-->
+  <section class="feat">
+    <div class="feat-stage">
+      <p class="eyebrow rv">Your focus, visualized.</p>
+      <h2 class="feat-title rv rv-2">Transparent by Design</h2>
+      <p class="feat-sub rv rv-3">Your data, your control.<br>Full visibility into the signals Acuity reads.</p>
+    </div>
   </section>
 
   <!--pricing-->
@@ -702,16 +789,16 @@
           <div class="pc-actions"><span class="pc-get">Get started</span></div>
         </div>
       </button>
-      <button class="price-card pc-academic pc-card-on rv rv-3" data-tier="academic" data-loc="pricing_grid" type="button" aria-label="Academic plan – Get started">
+      <button class="price-card pc-academic rv rv-3" data-tier="academic" data-loc="pricing_grid" type="button" aria-label="Academic plan – Get started">
         <div class="pc-body">
-          <span class="pc-feat">Everything in standard</span>
+          <span class="pc-feat">Best value for students</span>
           <span class="pc-feat sub">Save 20%</span>
           <div class="pc-actions"><span class="pc-toggle" aria-hidden="true"></span><span class="pc-get">Get started</span></div>
         </div>
       </button>
-      <button class="price-card pc-lifetime pc-card-on rv rv-4" data-tier="lifetime" data-loc="pricing_grid" type="button" aria-label="Lifetime plan – Get started">
+      <button class="price-card pc-lifetime rv rv-4" data-tier="lifetime" data-loc="pricing_grid" type="button" aria-label="Lifetime plan – Get started">
         <div class="pc-body">
-          <span class="pc-feat">Everything in standard</span>
+          <span class="pc-feat">Own Acuity forever</span>
           <span class="pc-feat sub">Save 25%</span>
           <div class="pc-actions"><span class="pc-toggle" aria-hidden="true"></span><span class="pc-get">Get started</span></div>
         </div>
@@ -721,8 +808,9 @@
 
   <!--team-->
   <section id="team">
+   <div class="team-stage">
     <p class="eyebrow rv">Team</p>
-    <h2 class="t-head rv rv-2">Built by students, for students.</h2>
+    <h2 class="t-head rv rv-2">Built by students, for students<span class="t-dot-holder">.<img class="t-dot" src="assets/logo/dot.svg" alt=""></span></h2>
     <p class="t-sub rv rv-2">We've lived this problem ourselves. That's why we're building the solution.</p>
     <div class="t-grid">
       <div class="t-card tint-blue rv rv-2">
@@ -744,13 +832,15 @@
         <p class="t-email"><a href="mailto:lejderoode.ieu2025@student.ie.edu">lejderoode.ieu2025@student.ie.edu</a></p>
       </div>
     </div>
+   </div>
   </section>
 
   <!--waitlist-->
   <section id="waitlist">
+   <div class="w-stage">
     <div class="w-form-wrap" id="waitlistFormWrap">
       <p class="eyebrow rv">Get early access</p>
-      <h2 class="w-head rv rv-2">Be the first to<span class="lock">LOCK IN<span class="dot">.</span></span></h2>
+      <h2 class="w-head rv rv-2">Be the first to<span class="lock">LOCK IN<span class="w-dot-holder">.<img class="w-dot" src="assets/logo/dot.svg" alt=""></span></span></h2>
       <p class="w-sub-a rv rv-2">Acuity is launching soon.</p>
       <p class="w-sub-b rv rv-3">Join the waitlist and we'll reach out when you're ready to go.</p>
       <form class="w-form rv rv-3" id="waitlistForm" novalidate>
@@ -771,21 +861,34 @@
         <button class="btn btn-salmon" id="shareNative" data-cta="referral_share">Share</button>
       </div>
     </div>
+   </div>
   </section>
 
 </main>
 
 <!--footer-->
-<footer>
-  <div class="ft-left">
-    <img src="assets/logo/logo.svg" alt="Acuity">
-    <span>Acuity.</span>
+<footer class="site-footer">
+  <div class="ft-cols">
+    <nav class="ft-col" aria-label="Navigation">
+      <span class="ft-h">Navigation</span>
+      <a href="#home">Home</a>
+      <a href="#problem">Problem</a>
+      <a href="#app">App</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#team">Team</a>
+    </nav>
+    <nav class="ft-col" aria-label="Legal">
+      <span class="ft-h">Legal</span>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </nav>
+    <div class="ft-col">
+      <span class="ft-h">Contact</span>
+      <a href="https://instagram.com/acuity.focus" target="_blank" rel="noopener">acuity.focus</a>
+      <a href="mailto:nikitadjand@gmail.com">nikitadjand@gmail.com</a>
+    </div>
   </div>
-  <nav class="ft-links" aria-label="Legal">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms</a>
-  </nav>
-  <span class="ft-copy">© 2026 Acuity. All rights reserved.</span>
+  <span class="ft-bottom">© 2026 Acuity. All rights reserved.</span>
 </footer>
 
 <!--scripts-->
@@ -999,14 +1102,26 @@
     if(el && window.track){ window.track('cta_click', {cta: el.getAttribute('data-cta')}); }
   });
 
-  /*pricing cards*/
+  /*pricing toggle – swaps only its own card's artwork (crossfade via CSS)*/
+  document.querySelectorAll('.pc-toggle').forEach(function(t){
+    t.addEventListener('click', function(e){
+      e.stopPropagation(); e.preventDefault();
+      var card=t.closest('.price-card');
+      if(card) card.classList.toggle('pc-on');
+    });
+  });
+
+  /*pricing cards – scroll to waitlist + track which plan was clicked*/
+  var waitlistEl=document.getElementById('waitlist');
   document.querySelectorAll('.price-card').forEach(function(card){
-    card.addEventListener('click', function(){
+    card.addEventListener('click', function(e){
+      if(e.target.closest('.pc-toggle')) return; /* toggle handled separately */
       var tier=card.getAttribute('data-tier');
       var loc=card.getAttribute('data-loc')||'pricing';
       if(window.track) window.track('pricing_click', {tier:tier, location:loc, ab_variant: (window.ACUITY_AB||'A')});
       try{ sessionStorage.setItem('acuity_tier', tier); }catch(_){}
-      location.hash='#waitlist';
+      if(waitlistEl){ waitlistEl.scrollIntoView({behavior:'smooth', block:'start'}); }
+      else { location.hash='#waitlist'; }
     });
   });
 })();
