@@ -154,11 +154,11 @@
     .btn:active{ transform:scale(.96); }
     .btn:focus-visible{ outline:3px solid rgba(44,79,178,.45); outline-offset:3px; }
     .btn-salmon{
-      background:var(--salmon); color:#fff; font-weight:600;
+      background:var(--coral); color:#fff; font-weight:600;
       padding:.72rem 1.6rem; border-radius:100px; font-size:.95rem;
       box-shadow:0 8px 20px rgba(206,124,106,0.4);
     }
-    .btn-salmon:hover{ background:#c87262; transform:translateY(-2px); box-shadow:0 12px 28px rgba(206,124,106,0.5); }
+    .btn-salmon:hover{ background:#C75D60; transform:translateY(-2px); box-shadow:0 12px 28px rgba(206,124,106,0.5); }
     .btn-blue{
       background:var(--blue); color:#fff; font-weight:600;
       padding:.72rem 1.7rem; border-radius:100px; font-size:.95rem;
@@ -181,7 +181,7 @@
     section > *{ max-width:100%; }
     .eyebrow{
       font-family:var(--fm); font-weight:500;
-      color:var(--salmon-soft);
+      color:var(--coral);
       font-size:clamp(1.3rem,3.2vw,2rem);
       letter-spacing:.01em; margin-bottom:1.4rem;
     }
@@ -483,7 +483,7 @@
     .t-name{ font-family:var(--fd); font-weight:800; font-size:clamp(1.2rem,2.4vw,1.7rem); margin-bottom:.3rem; }
     .t-card.tint-blue .t-name{ color:var(--blue); }
     .t-card.tint-purple .t-name{ color:var(--purple); }
-    .t-card.tint-red .t-name{ color:var(--salmon); }
+    .t-card.tint-red .t-name{ color:var(--coral); }
     .t-role{ color:#6b6359; font-weight:500; font-size:.95rem; margin-bottom:.9rem; }
     .t-email a{ color:#8a8176; font-size:.82rem; text-decoration:none; word-break:break-all; transition:color .2s; }
     .t-email a:hover{ color:var(--blue); }
@@ -511,14 +511,23 @@
     .w-input.invalid{ border-color:var(--red); }
     .w-msg{ margin-top:1rem; font-size:.95rem; font-weight:600; min-height:1.2rem; }
     .w-msg.ok{ color:var(--blue); } .w-msg.err{ color:var(--red); }
-    .w-success{ position:absolute; left:0; right:0; top:300px; width:560px; max-width:90%; margin:0 auto; text-align:center; display:none; }
+    .w-success{ position:absolute; left:0; right:0; top:250px; width:100%; margin:0; text-align:center; display:none; }
     .w-success.show{ display:block; animation:popIn .6s cubic-bezier(.22,1,.36,1); }
     @keyframes popIn{ from{opacity:0; transform:translateY(20px) scale(.97);} to{opacity:1; transform:none;} }
-    .w-success h3{ font-family:var(--fm); font-weight:800; color:var(--blue-deep); font-size:clamp(1.8rem,4.5vw,2.8rem); margin-bottom:.8rem; }
-    .w-success p{ color:#5c554c; font-weight:500; font-size:1.05rem; line-height:1.6; margin-bottom:1.6rem; }
-    .share-row{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; align-items:center; }
-    .share-link{ display:flex; align-items:center; gap:.5rem; background:rgba(255,255,255,.7); border:1.5px solid rgba(120,100,90,.2); border-radius:100px; padding:.6rem 1rem .6rem 1.3rem; font-size:.9rem; color:#5c554c; max-width:100%; }
-    .share-link code{ font-family:var(--fm); font-weight:600; color:var(--blue); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:230px; }
+    .ws-eyebrow{ font-family:var(--fm); font-weight:300; font-size:64px; line-height:1.1; letter-spacing:-0.01em; color:var(--coral); margin:0 0 22px; }
+    .ws-head{ font-family:var(--fm); font-weight:800; font-size:110px; line-height:1.05; letter-spacing:-0.02em; color:var(--navy); white-space:nowrap; margin:0 0 34px; }
+    .ws-dot-holder{ display:inline; }
+    .ws-dot{ display:inline-block; width:.19em; height:.19em; vertical-align:baseline; margin-left:.04em; }
+    .ws-body{ font-family:var(--fm); font-weight:300; font-size:32px; line-height:1.35; color:var(--blue-mid); max-width:1180px; margin:0 auto 40px; }
+    .ws-share{ display:flex; flex-direction:column; align-items:center; gap:20px; }
+    .ws-btns{ display:flex; gap:16px; justify-content:center; }
+    .share-link{ display:flex; align-items:center; justify-content:center; gap:.5rem; background:rgba(255,255,255,.7); border:1.5px solid rgba(120,100,90,.2); border-radius:100px; padding:.7rem 1.4rem; font-size:1rem; color:#9a9186; min-width:360px; max-width:90%; }
+    .share-link code{ font-family:var(--fm); font-weight:600; color:var(--blue-mid); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:560px; }
+    .w-success .btn{ padding:.95rem 2.4rem; font-size:1.1rem; font-weight:700; border-radius:100px; }
+    .w-success .btn-blue{ background:var(--blue-mid); color:#fff; box-shadow:0 8px 22px rgba(52,107,182,.32); }
+    .w-success .btn-blue:hover{ background:#2c5e9f; }
+    .w-success .btn-salmon{ background:var(--coral); color:#fff; box-shadow:0 8px 22px rgba(199,93,96,.32); }
+    .w-success .btn-salmon:hover{ background:#b8504f; }
 
     /*footer*/
     .site-footer{
@@ -851,13 +860,15 @@
     </div>
 
     <div class="w-success" id="waitlistSuccess">
-      <p class="eyebrow">You're on the list.</p>
-      <h3>Check your inbox to confirm. ✦</h3>
-      <p>We just sent you a confirmation email. Want to move up faster? Share your link — every friend who joins helps Acuity launch sooner.</p>
-      <div class="share-row">
+      <p class="ws-eyebrow">You're on the list!</p>
+      <h2 class="ws-head">Confirm your email<span class="ws-dot-holder"><img class="ws-dot" src="assets/logo/dot.svg" alt="."></span></h2>
+      <p class="ws-body">Hey! Thank you for joining the waitlist. We just sent you a confirmation email. Want to move up faster? Share your link! Every friend who joins helps us launch sooner.</p>
+      <div class="ws-share">
         <div class="share-link"><code id="shareLink">https://acuity.app/?ref=…</code></div>
-        <button class="btn btn-blue" id="copyShare" data-cta="referral_copy">Copy link</button>
-        <button class="btn btn-salmon" id="shareNative" data-cta="referral_share">Share</button>
+        <div class="ws-btns">
+          <button class="btn btn-blue" id="copyShare" data-cta="referral_copy">Copy link</button>
+          <button class="btn btn-salmon" id="shareNative" data-cta="referral_share">Share</button>
+        </div>
       </div>
     </div>
    </div>
