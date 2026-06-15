@@ -5,50 +5,68 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>You're confirmed — Acuity.</title>
   <link rel="icon" href="assets/logo/logo.svg" type="image/svg+xml"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet"/>
   <style>
+    @font-face{font-family:'Manrope';font-weight:200;src:url('assets/fonts/Manrope-ExtraLight.ttf') format('truetype');font-display:swap;}
+    @font-face{font-family:'Manrope';font-weight:300;src:url('assets/fonts/Manrope-Light.ttf') format('truetype');font-display:swap;}
+    @font-face{font-family:'Manrope';font-weight:400;src:url('assets/fonts/Manrope-Regular.ttf') format('truetype');font-display:swap;}
     @font-face{font-family:'Manrope';font-weight:500;src:url('assets/fonts/Manrope-Medium.ttf') format('truetype');font-display:swap;}
     @font-face{font-family:'Manrope';font-weight:600;src:url('assets/fonts/Manrope-SemiBold.ttf') format('truetype');font-display:swap;}
     @font-face{font-family:'Manrope';font-weight:700;src:url('assets/fonts/Manrope-Bold.ttf') format('truetype');font-display:swap;}
     @font-face{font-family:'Manrope';font-weight:800;src:url('assets/fonts/Manrope-ExtraBold.ttf') format('truetype');font-display:swap;}
     *{box-sizing:border-box;margin:0;padding:0;}
-    :root{--cream:#F1ECE2;--blue:#2C4FB2;--blue-deep:#21307C;--salmon:#CE7C6A;--red:#E14B4B;}
+    :root{--cream:#F1ECE2;--navy:#113692;--blue-mid:#346BB6;--coral:#C75D60;}
     body{font-family:'Manrope',system-ui,sans-serif;background:var(--cream);color:#2c2c33;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;overflow:hidden;position:relative;}
     .bg-top{position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(1500px,135vw);aspect-ratio:1024/360;background:url('assets/backgrounds/semi circle.png') top center/contain no-repeat;z-index:0;pointer-events:none;}
     .bg-bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(1700px,150vw);aspect-ratio:1024/120;background:url('assets/backgrounds/lower circle.png') bottom center/contain no-repeat;z-index:0;pointer-events:none;}
-    .card{position:relative;z-index:2;max-width:600px;animation:pop .7s cubic-bezier(.22,1,.36,1);background:rgba(245,241,233,.82);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border:1px solid rgba(255,255,255,.6);border-radius:30px;padding:2.8rem 2.4rem;box-shadow:0 26px 70px rgba(40,30,25,.18);}
+
+    /*success card*/
+    .card{
+      position:relative;z-index:2;max-width:760px;width:100%;
+      animation:pop .7s cubic-bezier(.22,1,.36,1);
+      background:rgba(244,241,235,.62);
+      backdrop-filter:blur(30px) saturate(1.1);-webkit-backdrop-filter:blur(30px) saturate(1.1);
+      border:1px solid rgba(255,255,255,.7);
+      border-radius:36px;
+      padding:3.4rem 3.4rem 2.6rem;
+      box-shadow:0 34px 90px rgba(40,30,25,.22), inset 0 1px 0 rgba(255,255,255,.75), inset 0 -3px 30px rgba(255,255,255,.28);
+    }
     @keyframes pop{from{opacity:0;transform:translateY(24px) scale(.96);}to{opacity:1;transform:none;}}
-    .logo{width:90px;margin:0 auto 1.6rem;display:block;}
-    .eyebrow{color:var(--salmon);font-weight:600;letter-spacing:.04em;font-size:1.2rem;margin-bottom:.8rem;}
-    h1{font-weight:800;color:var(--blue-deep);font-size:clamp(2rem,5.5vw,3.2rem);line-height:1.05;margin-bottom:1rem;letter-spacing:-.02em;}
-    .dot{color:var(--red);}
-    p.lead{color:#5c554c;font-weight:500;font-size:1.1rem;line-height:1.6;margin-bottom:2rem;}
-    .share{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:2rem;}
-    .share-link{display:flex;align-items:center;background:rgba(255,255,255,.7);border:1.5px solid rgba(120,100,90,.2);border-radius:100px;padding:.65rem 1.2rem;font-weight:600;color:var(--blue);font-size:.9rem;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-    .btn{cursor:pointer;border:none;font-family:'Manrope';font-weight:600;padding:.8rem 1.8rem;border-radius:100px;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;transition:transform .2s,box-shadow .25s,background .25s;}
+
+    .eyebrow{font-weight:200;font-size:32px;color:var(--coral);line-height:1.1;margin-bottom:.5rem;}
+    .line-a{font-weight:700;font-size:48px;color:var(--navy);line-height:1.08;letter-spacing:-.02em;}
+    .line-b{font-weight:700;font-size:96px;color:var(--navy);line-height:1.0;letter-spacing:-.02em;margin-bottom:1.2rem;}
+    .dot-holder{display:inline;}
+    .dot-img{display:inline-block;width:.2em;height:.2em;vertical-align:baseline;margin-left:.04em;}
+    .lead{font-weight:600;font-size:20px;color:var(--blue-mid);line-height:1.5;margin:0 auto 1.9rem;max-width:560px;}
+
+    .share{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-bottom:1.4rem;}
+    .share-btns{display:flex;gap:.8rem;}
+    .share-link{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:100px;padding:.7rem 1.4rem;font-weight:600;color:var(--blue-mid);font-size:.95rem;min-width:320px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.6);}
+    .btn{cursor:pointer;border:1px solid rgba(255,255,255,.35);font-family:'Manrope';font-weight:700;padding:.85rem 2rem;border-radius:100px;font-size:1rem;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .2s,box-shadow .25s,background .25s,filter .25s;}
     .btn:active{transform:scale(.96);}
-    .btn-salmon{background:var(--salmon);color:#fff;box-shadow:0 8px 20px rgba(206,124,106,.4);}
-    .btn-salmon:hover{background:#c87262;transform:translateY(-2px);}
-    .btn-blue{background:var(--blue);color:#fff;box-shadow:0 8px 20px rgba(44,79,178,.35);}
-    .btn-blue:hover{background:#2747a0;transform:translateY(-2px);}
-    .home-link{display:inline-block;margin-top:1.6rem;color:#8a8176;text-decoration:none;font-weight:500;font-size:.92rem;}
-    .home-link:hover{color:var(--blue);}
+    .btn-blue{background:rgba(52,107,182,.7);box-shadow:0 12px 28px rgba(52,107,182,.26), inset 0 1px 0 rgba(255,255,255,.45);}
+    .btn-blue:hover{background:rgba(52,107,182,.82);transform:translateY(-2px);}
+    .btn-salmon{background:rgba(199,93,96,.7);box-shadow:0 12px 28px rgba(199,93,96,.26), inset 0 1px 0 rgba(255,255,255,.45);}
+    .btn-salmon:hover{background:rgba(199,93,96,.82);transform:translateY(-2px);}
+
+    .home-link{display:inline-block;margin-top:1rem;color:var(--coral);text-decoration:none;font-weight:200;font-size:24px;}
+    .home-link:hover{opacity:.75;}
   </style>
 </head>
 <body>
   <div class="bg-top"></div>
   <div class="bg-bottom"></div>
   <div class="card">
-    <img src="assets/logo/logo.svg" alt="Acuity" class="logo">
     <p class="eyebrow">Email confirmed</p>
-    <h1>You're officially locked in<span class="dot">.</span></h1>
-    <p class="lead">Thanks for verifying your email. You'll be among the first to get access when Acuity launches.<br><br>Want in sooner? Every friend who joins through your link moves you up the list.</p>
+    <h2 class="line-a">You're officially</h2>
+    <h1 class="line-b">locked in<span class="dot-holder"><img class="dot-img" src="assets/logo/dot.svg" alt="."></span></h1>
+    <p class="lead">Thank you for verifying your email. You'll be one of the first people to get access when Acuity launches. Want to get it sooner? Every friend who joins through your link moves you up the list.</p>
     <div class="share">
       <span class="share-link" id="shareLink">https://acuity.app/?ref=…</span>
-      <button class="btn btn-blue" id="copyShare">Copy link</button>
-      <button class="btn btn-salmon" id="shareNative">Share</button>
+      <div class="share-btns">
+        <button class="btn btn-blue" id="copyShare">Copy link</button>
+        <button class="btn btn-salmon" id="shareNative">Share</button>
+      </div>
     </div>
     <a href="index.html" class="home-link">← Back to the site</a>
   </div>
@@ -73,7 +91,7 @@
       });
       document.getElementById('shareNative').addEventListener('click',function(){
         if(window.track) window.track('referral_share',{method:'native'});
-        var data={title:'Acuity',text:'I just joined the Acuity waitlist — the science of staying focused. Join me:',url:link};
+        var data={title:'Acuity',text:'I just joined the Acuity waitlist. The science of staying focused. Join me:',url:link};
         if(navigator.share){navigator.share(data).catch(function(){});}
         else if(navigator.clipboard){navigator.clipboard.writeText(link);}
       });
