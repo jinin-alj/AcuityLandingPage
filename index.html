@@ -418,7 +418,6 @@
       box-shadow:var(--shadow); transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
       display:block; text-align:left;
     }
-    /* toggled (-2) artwork crossfades over the default artwork */
     .price-card::before{
       content:''; position:absolute; inset:0; border-radius:26px; z-index:1;
       background-size:cover; background-position:center;
@@ -449,7 +448,7 @@
     }
     .price-card:hover .pc-get{ background:rgba(255,255,255,.6); color:var(--blue-deep); }
 
-    /* ───────────────────────── TEAM ───────────────────────── */
+    /*team*/
     #team{ height:100vh; min-height:982px; display:block; padding:0; overflow:hidden; }
     .team-stage{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:1512px; height:982px; }
     .team-stage > *{ position:absolute; left:0; right:0; margin:0; text-align:center; }
@@ -489,7 +488,7 @@
     .t-email a{ color:#8a8176; font-size:.82rem; text-decoration:none; word-break:break-all; transition:color .2s; }
     .t-email a:hover{ color:var(--blue); }
 
-    /* ───────────────────────── WAITLIST ───────────────────────── */
+    /*waitlist*/
     #waitlist{ height:100vh; min-height:982px; display:block; padding:0; overflow:hidden; }
     .w-stage{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:1512px; height:982px; }
     .w-form-wrap{ position:absolute; left:0; right:0; top:258px; text-align:center; }
@@ -521,7 +520,7 @@
     .share-link{ display:flex; align-items:center; gap:.5rem; background:rgba(255,255,255,.7); border:1.5px solid rgba(120,100,90,.2); border-radius:100px; padding:.6rem 1rem .6rem 1.3rem; font-size:.9rem; color:#5c554c; max-width:100%; }
     .share-link code{ font-family:var(--fm); font-weight:600; color:var(--blue); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:230px; }
 
-    /* ───────────────────────── FOOTER ───────────────────────── */
+    /*footer*/
     .site-footer{
       position:relative; z-index:2; width:100%; aspect-ratio:3024/392;
       background:url('assets/logo/footer.png') center/cover no-repeat;
@@ -1102,7 +1101,7 @@
     if(el && window.track){ window.track('cta_click', {cta: el.getAttribute('data-cta')}); }
   });
 
-  /*pricing toggle – swaps only its own card's artwork (crossfade via CSS)*/
+  /*pricing toggle*/
   document.querySelectorAll('.pc-toggle').forEach(function(t){
     t.addEventListener('click', function(e){
       e.stopPropagation(); e.preventDefault();
@@ -1111,11 +1110,11 @@
     });
   });
 
-  /*pricing cards – scroll to waitlist + track which plan was clicked*/
+  /*pricing card*/
   var waitlistEl=document.getElementById('waitlist');
   document.querySelectorAll('.price-card').forEach(function(card){
     card.addEventListener('click', function(e){
-      if(e.target.closest('.pc-toggle')) return; /* toggle handled separately */
+      if(e.target.closest('.pc-toggle')) return;
       var tier=card.getAttribute('data-tier');
       var loc=card.getAttribute('data-loc')||'pricing';
       if(window.track) window.track('pricing_click', {tier:tier, location:loc, ab_variant: (window.ACUITY_AB||'A')});
