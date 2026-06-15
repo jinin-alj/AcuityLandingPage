@@ -2,3 +2,9 @@ python
 .env
 .vscode
 .cursor
+node_modules/
+supabase/.temp/
+supabase/README.md
+ENGINEERING_RULES.md
+acuityfonts/
+.DS_Store

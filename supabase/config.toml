@@ -1,0 +1,15 @@
+# Acuity Supabase config (relevant edge-function settings).
+
+[functions.waitlist-signup]
+verify_jwt = true   # called from the browser with the anon key
+
+[functions.verify]
+verify_jwt = false  # opened directly from email links — must be public
+
+[functions.email-sequence]
+verify_jwt = true   # invoked by cron / service role
+
+# Run the intro email sequence once a day.
+# (You can also create this schedule from the Supabase dashboard → Edge Functions.)
+# [functions.email-sequence.schedule]
+# cron = "0 15 * * *"
