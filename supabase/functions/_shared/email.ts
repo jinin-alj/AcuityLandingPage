@@ -78,8 +78,8 @@ export async function sendEmail(opts: { to: string; subject: string; html: strin
   return false;
 }
 /* email templates */
-const BRAND = "#2C4FB2";
-const SALMON = "#CE7C6A";
+const BRAND = "346BB6";
+const SALMON = "#C75D60";
 
 function shell(inner: string): string {
   return `<div style="font-family:Helvetica,Arial,sans-serif;background:#F1ECE2;padding:32px 16px;">
