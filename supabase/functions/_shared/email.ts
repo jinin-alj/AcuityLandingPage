@@ -125,8 +125,8 @@ export function sequenceEmail(stage: number, name: string, shareLink: string): {
       subject: "Why we're building Acuity",
       html: shell(`
         <h1 style="font-size:21px;color:${BRAND};margin:10px 0 14px;">The problem we couldn't ignore</h1>
-        <p>Hi ${escapeHtml(name)}, we're students too. We watched friends (and ourselves) burn out without noticing until it was too late.</p>
-        <p>Acuity reads your cognitive state from passive signals — no wearables, no interruptions — so you know when to push and when to rest.</p>
+        <p>Hi ${escapeHtml(name)}, we're students too, we watched friends (and ourselves) burn out without noticing until it was too late.</p>
+        <p>Acuity reads your cognitive state from passive signals so you know when to push and when to rest.</p>
         <p>Know someone who'd love this? Send them your link:</p>
         ${shareBtn(shareLink)}
       `),
@@ -136,7 +136,7 @@ export function sequenceEmail(stage: number, name: string, shareLink: string): {
     return {
       subject: "A sneak peek at the Acuity demo",
       html: shell(`
-        <h1 style="font-size:21px;color:${BRAND};margin:10px 0 14px;">Every session is a drive 🏁</h1>
+        <h1 style="font-size:21px;color:${BRAND};margin:10px 0 14px;">Every session is a drive</h1>
         <p>${escapeHtml(name)}, the further you go, the deeper you focused. Our demo turns focus into a journey you can actually see.</p>
         <p>The more friends who join, the faster we launch. Keep sharing:</p>
         ${shareBtn(shareLink)}
@@ -145,10 +145,10 @@ export function sequenceEmail(stage: number, name: string, shareLink: string): {
   }
   if (stage === 3) {
     return {
-      subject: "We're almost there — last call to share",
+      subject: "We're almost there! Last call to share",
       html: shell(`
         <h1 style="font-size:21px;color:${BRAND};margin:10px 0 14px;">Launch is around the corner</h1>
-        <p>${escapeHtml(name)}, you're early — thank you. One more ask: share your link so more students can lock in with you on day one.</p>
+        <p>${escapeHtml(name)}, Thank you for joining us early. Share your link so more students can lock in with you on day one.</p>
         ${shareBtn(shareLink)}
       `),
     };
